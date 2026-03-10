@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>途游旅游 - 发布游记</title>
+  <link rel="stylesheet" href="网页.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="网页.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #66afea 0%, #6b4ba2 100%);
+      min-height: 100vh;
+    }
+
+    .publish-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-title {
+      text-align: center;
+      color: #1a365d;
+      font-size: 28px;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #1a365d;
+      font-weight: 500;
+      font-size: 16px;
+    }
+
+    .form-group input[type="text"] {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background-color: #f8fafc;
+    }
+
+    .form-group input[type="text"]:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background-color: white;
+    }
+
+    .image-upload {
+      border: 2px dashed #e2e8f0;
+      border-radius: 8px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .image-upload:hover {
+      border-color: #667eea;
+      background-color: #f8fafc;
+    }
+
+    .image-upload input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .upload-icon {
+      font-size: 48px;
+      color: #667eea;
+      margin-bottom: 15px;
+    }
+
+    .upload-text {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .upload-hint {
+      color: #999;
+      font-size: 14px;
+    }
+
+    .image-preview {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .image-preview.show {
+      display: block;
+    }
+
+    .preview-img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #e2e8f0;
+    }
+
+    .remove-preview {
+      margin-top: 10px;
+      background: #ef4444;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .remove-preview:hover {
+      background: #dc2626;
+      transform: translateY(-1px);
+    }
+
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #f8fafc;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background-color: white;
+    }
+
+    .form-group textarea {
+      width: 100%;
+      padding: 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      resize: vertical;
+      min-height: 200px;
+      font-size: 16px;
+      font-family: inherit;
+      line-height: 1.6;
+      background-color: #f8fafc;
+      transition: all 0.3s ease;
+    }
+
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background-color: white;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: flex-end;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .form-btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-btn.cancel {
+      background-color: #e2e8f0;
+      color: #666;
+    }
+
+    .form-btn.cancel:hover {
+      background-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+
+    .form-btn.submit {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .form-btn.submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    .form-btn.submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #667eea;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      border: 2px solid #667eea;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .back-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      background: rgba(255, 255, 255, 1);
+      border-color: #764ba2;
+      color: #764ba2;
+      text-decoration: none;
+    }
+
+    .back-link:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .error-message {
+      color: #ef4444;
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    /* 标签输入样式 */
+    .tags-input-container {
+      margin-top: 8px;
+    }
+
+    .tags-input {
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 8px 12px;
+      background: white;
+      transition: border-color 0.3s ease;
+    }
+
+    .tags-input:focus-within {
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    #tag-input {
+      border: none;
+      outline: none;
+      width: 100%;
+      font-size: 14px;
+      padding: 0;
+      background: transparent;
+    }
+
+    .tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+      min-height: 32px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      background: #f1f5f9;
+      color: #475569;
+      padding: 4px 12px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 500;
+      animation: tagAppear 0.3s ease;
+    }
+
+    .tag-remove {
+      margin-left: 6px;
+      cursor: pointer;
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .tag-remove:hover {
+      color: #ef4444;
+    }
+
+    .tags-hint {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 8px;
+    }
+
+    @keyframes tagAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div class="publish-container">
+    <a href="./游记分享.html" class="back-link">
+      返回
+    </a>
+
+    <h1 class="page-title">发布游记</h1>
+
+    <form id="publish-form">
+      <div class="form-group">
+        <label for="title">游记标题</label>
+        <input type="text" id="title" placeholder="请输入游记标题">
+        <div class="error-message" id="title-error">请输入游记标题</div>
+      </div>
+
+      <div class="form-group">
+        <label>封面图</label>
+        <div class="image-upload">
+          <input type="file" id="cover-image" accept="image/*">
+          <div class="upload-icon">📷</div>
+          <div class="upload-text">点击或拖拽上传封面图</div>
+          <div class="upload-hint">支持 JPG、PNG 格式，建议尺寸 1200×800</div>
+        </div>
+        <div class="image-preview" id="image-preview">
+          <img src="" alt="预览图" class="preview-img" id="preview-img">
+          <button type="button" class="remove-preview" id="remove-preview">移除图片</button>
+        </div>
+        <div class="error-message" id="image-error">请上传封面图</div>
+      </div>
+
+      <div class="form-group">
+        <label for="spot">关联景点</label>
+        <select id="spot">
+          <option value="">请选择景点</option>
+          <option value="浙江乌镇">浙江乌镇</option>
+          <option value="湖南凤凰古城">湖南凤凰古城</option>
+          <option value="南浔古镇">南浔古镇</option>
+          <option value="四川九寨沟">四川九寨沟</option>
+          <option value="广西阳朔">广西阳朔</option>
+          <option value="江西武功山">江西武功山</option>
+          <option value="重庆">重庆</option>
+          <option value="上海">上海</option>
+          <option value="成都">成都</option>
+          <option value="广西风山">广西风山</option>
+          <option value="西双版纳">西双版纳</option>
+          <option value="黄石大峡谷">黄石大峡谷</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="content">游记内容</label>
+        <textarea id="content" placeholder="分享你的旅行经历和感受..."></textarea>
+        <div class="error-message" id="content-error">请输入游记内容</div>
+      </div>
+
+      <div class="form-group">
+        <label for="tags">游记标签</label>
+        <div class="tags-input-container">
+          <div class="tags-input" id="tags-input">
+            <input type="text" id="tag-input" placeholder="输入标签后按回车或逗号添加">
+          </div>
+          <div class="tags-list" id="tags-list"></div>
+          <div class="tags-hint">可添加多个标签，用于描述游记主题和特色</div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="form-btn cancel" id="clear-btn">清空</button>
+        <button type="submit" class="form-btn submit" id="publish-btn">发布游记</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // 图片上传预览
+    const coverImage = document.getElementById('cover-image');
+    const imagePreview = document.getElementById('image-preview');
+    const previewImg = document.getElementById('preview-img');
+    const removePreview = document.getElementById('remove-preview');
+
+    coverImage.addEventListener('change', function (e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          previewImg.src = e.target.result;
+          imagePreview.classList.add('show');
+          document.getElementById('image-error').classList.remove('show');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    removePreview.addEventListener('click', function () {
+      coverImage.value = '';
+      imagePreview.classList.remove('show');
+      previewImg.src = '';
+    });
+
+    // 标签功能
+    const tagInput = document.getElementById('tag-input');
+    const tagsList = document.getElementById('tags-list');
+    let tags = [];
+
+    // 添加标签
+    function addTag(tagText) {
+      const trimmedTag = tagText.trim();
+      if (trimmedTag && !tags.includes(trimmedTag)) {
+        tags.push(trimmedTag);
+        renderTags();
+        tagInput.value = '';
+      }
+    }
+
+    // 移除标签
+    function removeTag(tagText) {
+      tags = tags.filter(tag => tag !== tagText);
+      renderTags();
+    }
+
+    // 渲染标签列表
+    function renderTags() {
+      tagsList.innerHTML = '';
+      tags.forEach(tag => {
+        const tagElement = document.createElement('div');
+        tagElement.className = 'tag';
+        tagElement.innerHTML = `
+          ${tag}
+          <span class="tag-remove" onclick="removeTag('${tag}')">×</span>
+        `;
+        tagsList.appendChild(tagElement);
+      });
+    }
+
+    // 标签输入事件
+    tagInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ',') {
+        e.preventDefault();
+        addTag(this.value);
+      }
+    });
+
+    tagInput.addEventListener('blur', function () {
+      if (this.value.trim()) {
+        addTag(this.value);
+      }
+    });
+
+    // 表单校验
+    const publishForm = document.getElementById('publish-form');
+    const titleInput = document.getElementById('title');
+    const contentInput = document.getElementById('content');
+
+    function validateForm() {
+      let isValid = true;
+
+      // 校验标题
+      if (!titleInput.value.trim()) {
+        document.getElementById('title-error').classList.add('show');
+        isValid = false;
+      } else {
+        document.getElementById('title-error').classList.remove('show');
+      }
+
+      // 校验图片
+      if (!coverImage.files.length) {
+        document.getElementById('image-error').classList.add('show');
+        isValid = false;
+      } else {
+        document.getElementById('image-error').classList.remove('show');
+      }
+
+      // 校验内容
+      if (!contentInput.value.trim()) {
+        document.getElementById('content-error').classList.add('show');
+        isValid = false;
+      } else {
+        document.getElementById('content-error').classList.remove('show');
+      }
+
+      return isValid;
+    }
+
+    // 表单提交
+    publishForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      if (validateForm()) {
+        const publishBtn = document.getElementById('publish-btn');
+
+        publishBtn.disabled = true;
+        publishBtn.textContent = '发布中...';
+
+        // 获取表单数据
+        const title = titleInput.value.trim();
+        const spot = document.getElementById('spot').value;
+        const content = contentInput.value.trim();
+        const currentUser = localStorage.getItem('currentUser') || '匿名用户';
+        const userTags = [...tags]; // 复制标签数组
+
+        console.log('表单数据验证:');
+        console.log('标题:', title);
+        console.log('内容:', content);
+        console.log('标签:', userTags);
+
+        // 确保标题和内容不为空
+        if (!title || !content) {
+          alert('请填写标题和内容');
+          publishBtn.disabled = false;
+          publishBtn.textContent = '发布游记';
+          return;
+        }
+
+        // 直接调用saveTravelNote函数，传递coverImage元素
+        await saveTravelNote(title, spot, content, coverImage, currentUser, userTags);
+      }
+    });
+
+    // 保存游记到后端API
+    async function saveTravelNote(title, spot, content, coverImage, author, userTags) {
+      try {
+        // 构建用户ID（确保是数字）
+        let userId = 1; // 默认用户ID
+        try {
+          const userInfo = JSON.parse(author);
+          userId = parseInt(userInfo.id || userInfo.userId || '1');
+          console.log('获取到的用户ID:', userId, '用户信息:', userInfo);
+        } catch (error) {
+          console.log('解析用户信息失败，使用默认ID:', error);
+          userId = 1;
+        }
+
+        // 确保用户ID有效（大于0）
+        if (userId <= 0) {
+          userId = 1;
+        }
+        console.log('最终使用的用户ID:', userId);
+
+        // 构建景点ID映射
+        const spotIdMap = {
+          '浙江乌镇': 1,
+          '湖南凤凰古城': 2,
+          '南浔古镇': 3,
+          '四川九寨沟': 4,
+          '广西阳朔': 5,
+          '江西武功山': 6,
+          '重庆': 7,
+          '上海': 8,
+          '成都': 9,
+          '广西风山': 10,
+          '西双版纳': 11,
+          '黄石大峡谷': 12
+        };
+
+        // 获取景点ID
+        const scenicId = spotIdMap[spot] || 1;
+
+        // 创建FormData对象
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('content', content);
+        formData.append('spot', spot);  // 后端期望spot参数
+        formData.append('tags', userTags.join(','));
+        formData.append('author_id', userId.toString());  // 后端期望author_id参数
+        formData.append('user_id', userId.toString());    // 后端也需要user_id参数
+
+        // 获取作者名（优先使用昵称，没有昵称使用用户名）
+        let authorName = '匿名用户';
+        try {
+          const userInfo = JSON.parse(author);
+          authorName = userInfo.nickname || userInfo.username || '匿名用户';
+        } catch (error) {
+          authorName = author || '匿名用户';
+        }
+        formData.append('author', authorName);  // 后端必需参数
+
+        // 添加图片文件 - 后端期望cover_image参数名
+        if (coverImage.files && coverImage.files.length > 0) {
+          formData.append('cover_image', coverImage.files[0]);
+        }
+
+        // 发送POST请求到后端API
+        const apiBaseUrl = window.API_BASE_URL || 'http://10.13.99.225:3000/api';
+        console.log('发送发布游记请求到:', `${apiBaseUrl}/notes`);
+
+        // 调试FormData内容
+        for (let pair of formData.entries()) {
+          console.log('FormData:', pair[0], pair[1]);
+        }
+
+        const response = await fetch(`${apiBaseUrl}/notes`, {
+          method: 'POST',
+          body: formData
+        });
+
+        console.log('API响应状态:', response.status);
+
+        if (!response.ok) {
+          let errorMessage = '发布游记失败';
+          try {
+            const errorData = await response.json();
+            errorMessage = errorData.message || errorData.error || errorMessage;
+            console.log('API错误详情:', JSON.stringify(errorData, null, 2));
+          } catch (e) {
+            console.log('无法解析错误响应:', e);
+          }
+          throw new Error(errorMessage);
+        }
+
+        const data = await response.json();
+        console.log('发布游记成功:', data);
+
+        // 发布成功提示
+        const publishBtn = document.getElementById('publish-btn');
+        publishBtn.textContent = '发布成功！等待审核...';
+
+        // 2秒后跳转到游记列表页
+        setTimeout(() => {
+          window.location.href = './游记分享.html';
+        }, 2000);
+      } catch (error) {
+        console.error('发布游记失败:', error);
+
+        // 发布失败提示
+        const publishBtn = document.getElementById('publish-btn');
+        publishBtn.disabled = false;
+        publishBtn.textContent = '发布失败，请重试';
+
+        alert('发布游记失败，请稍后重试');
+      }
+    }
+
+    // 清空按钮
+    document.getElementById('clear-btn').addEventListener('click', function () {
+      if (confirm('确定要清空所有内容吗？')) {
+        titleInput.value = '';
+        coverImage.value = '';
+        imagePreview.classList.remove('show');
+        previewImg.src = '';
+        document.getElementById('spot').value = '';
+        contentInput.value = '';
+
+        // 清空标签
+        tags = [];
+        renderTags();
+
+        // 隐藏错误信息
+        document.getElementById('title-error').classList.remove('show');
+        document.getElementById('image-error').classList.remove('show');
+        document.getElementById('content-error').classList.remove('show');
+      }
+    });
+
+    // 实时校验
+    titleInput.addEventListener('input', validateForm);
+    contentInput.addEventListener('input', validateForm);
+  </script>
+</body>
+
+</html>

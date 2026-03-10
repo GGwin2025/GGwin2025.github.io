@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>途游旅游 - 自然风光</title>
+  <link rel="stylesheet" href="网页.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="网页.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #66afea 0%, #6b4ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      height: 100vh;
+      background-position: center;
+      background-size: cover;
+      padding-left: 8%;
+      padding-right: 8%;
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+      height: 88%;
+      align-items: center;
+    }
+
+    .col {
+      flex-basis: 50%;
+    }
+
+    .col:last-child {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 60px;
+    }
+
+    p {
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    button {
+      width: 180px;
+      color: #000;
+      font-size: 12px;
+      padding: 12px 0;
+      background: #fff;
+      border: 0;
+      border-radius: 20px;
+      outline: none;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      width: 250px;
+      height: 200px;
+      display: inline-block;
+      border-radius: 10px;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: pointer;
+      margin: 10px 15px;
+      background-position: center;
+      background-size: cover;
+      transition: transform 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .card h5,
+    .card p {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      padding: 15px 25px;
+    }
+
+    /* .card2 {
+      background-image: url(./旅游图片/自然风光/四川九寨沟/自然四川2.jpg);
+    }
+
+    .card3 {
+      background-image: url(./旅游图片/自然风光/四川九寨沟/自然四川3.jpg);
+    }
+
+    .card4 {
+      background-image: url(./旅游图片/自然风光/四川九寨沟/自然四川4.jpg);
+    } */
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    h5 {
+      color: #fff;
+      text-shadow: 0 0 5px #999;
+      position: absolute;
+      top: -40px;
+      text-align: center;
+
+      font-size: 30px;
+    }
+
+    .card p {
+      text-shadow: 0 0 5px #000;
+      font-size: 18px;
+      position: absolute;
+      bottom: -10px;
+      text-align: center;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="slide1"></div>
+      <div class="slide2"></div>
+      <ul id="nav">
+        <li><a href="./网页.html">首页</a></li>
+        <li><a href="./古城古镇网页.html">古城古镇</a></li>
+        <li data-current="true"><a href="./自然风光网页.html">自然风光</a></li>
+        <li><a href="./城市漫游网页.html">城市漫游</a></li>
+        <li><a href="./小众秘境.html">小众秘境</a></li>
+        <li><a href="./游记分享.html">游记分享</a></li>
+        <li><a href="./我的.html">我的</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <div class="container fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url(./旅游图片/自然风光/四川九寨沟/自然四川1.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="四川九寨沟">四川九寨沟</h1>
+        <p>
+          九寨沟，位于四川省阿坝藏族羌族自治州，是中国第一个以保护自然风景为主要目的的自然保护区，以翠海、叠瀑、彩林、雪峰、藏情、蓝冰"六绝"著称于世。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/683d4e40000000002202fe86?xsec_token=ABNUm6Z5gU61d4-BreTVm9E-gBQ6tiHx_-GAH9K46H1Ik=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url(./旅游图片/自然风光/四川九寨沟/自然四川1.jpg);">
+          <img src="./旅游图片/自然风光/四川九寨沟/五花海.jpg" alt="">
+          <button class="favorite-btn" data-id="jiuzhaigou-wuhuahai" data-name="五花海"
+            data-image="./旅游图片/自然风光/四川九寨沟/五花海.jpg" data-description="九寨沟的精华景点，湖水呈现出奇幻的蓝绿色彩，如童话世界">☆</button>
+          <h5>五花海</h5>
+          <p>九寨沟的精华景点，湖水呈现出奇幻的蓝绿色彩，如童话世界</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/自然风光/四川九寨沟/五彩池.jpg" alt="">
+          <button class="favorite-btn" data-id="jiuzhaigou-wucaichi" data-name="五彩池"
+            data-image="./旅游图片/自然风光/四川九寨沟/五彩池.jpg" data-description="是九寨沟的一个重要景点，也是一个重要的旅游目的地">☆</button>
+          <h5>五彩池</h5>
+          <p>是九寨沟的一个重要景点，也是一个重要的旅游目的地</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/自然风光/四川九寨沟/自然四川3.jpg" alt="">
+          <button class="favorite-btn" data-id="jiuzhaigou-changhai" data-name="长海"
+            data-image="./旅游图片/自然风光/四川九寨沟/自然四川3.jpg" data-description="九寨沟最大的海子，湖水深邃湛蓝，四周雪山环绕">☆</button>
+          <h5>长海</h5>
+          <p>九寨沟最大的海子，湖水深邃湛蓝，四周雪山环绕</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/自然风光/四川九寨沟/自然四川4.jpg" alt="">
+          <button class="favorite-btn" data-id="jiuzhaigou-zhenzhutan" data-name="珍珠滩"
+            data-image="./旅游图片/自然风光/四川九寨沟/自然四川4.jpg" data-description="水流在滩面上溅起无数水花，如珍珠般晶莹剔透">☆</button>
+          <h5>珍珠滩</h5>
+          <p>水流在滩面上溅起无数水花，如珍珠般晶莹剔透</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url(./旅游图片/自然风光/广西阳朔/广西阳朔1.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="广西阳朔">广西阳朔</h1>
+        <p>
+          桂林山水甲天下，阳朔山水甲桂林。阳朔以漓江为纽带，两岸奇峰林立、翠竹摇曳，晨雾缭绕时宛若泼墨山水长卷，是桂林风光的精华所在。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/67b40f3b000000000603af1e?xsec_token=AB_E5XiEsLKAW5_m2sqK3e_xAkuXOE9PAoc89mHSHz2YY=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/自然风光/广西阳朔/相公山.jpg" alt="">
+          <button class="favorite-btn" data-id="yangshuo-xiangongshan" data-name="相公山"
+            data-image="./旅游图片/自然风光/广西阳朔/相公山.jpg" data-description="出时分，日云海缭绕，群峰若隐若现">☆</button>
+          <h5>相公山</h5>
+          <p>出时分，日云海缭绕，群峰若隐若现</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/自然风光/广西阳朔/一尺稻田.jpg" alt="">
+          <button class="favorite-btn" data-id="yangshuo-ricefield" data-name="一尺稻田"
+            data-image="./旅游图片/自然风光/广西阳朔/一尺稻田.jpg" data-description="金黄稻田层层叠叠，如链似带，晨雾缭绕时宛如仙境">☆</button>
+          <h5>一尺稻田</h5>
+          <p>金黄稻田层层叠叠，如链似带，晨雾缭绕时宛如仙境</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/自然风光/广西阳朔/千里江山.jpg" alt="">
+          <button class="favorite-btn" data-id="yangshuo-qianli" data-name="千里江山" data-image="./旅游图片/自然风光/广西阳朔/千里江山.jpg"
+            data-description="群峰竞秀，江水如练，晨雾缭绕间宛如千里江山图徐徐铺展">☆</button>
+          <h5>千里江山</h5>
+          <p>群峰竞秀，江水如练，晨雾缭绕间宛如千里江山图徐徐铺展</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/自然风光/广西阳朔/遇龙桥.jpg" alt="">
+          <button class="favorite-btn" data-id="yangshuo-yulong" data-name="遇龙桥" data-image="./旅游图片/自然风光/广西阳朔/遇龙桥.jpg"
+            data-description="横跨遇龙河，是阳朔最古老的石拱桥之一，桥影与青山碧水相映成画">☆</button>
+          <h5>遇龙桥</h5>
+          <p>横跨遇龙河，是阳朔最古老的石拱桥之一，桥影与青山碧水相映成画</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url(./旅游图片/自然风光/江西武功山/武功山背景.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="江西武功山">江西武功山</h1>
+        <p>
+          武功山，位于江西省中西部，罗霄山脉北支，主峰金顶海拔1918米，以高山草甸、云海星空、日出日落和徒步露营闻名，被誉为“云中草原·户外天堂”。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/64ae7d3f000000001a01011b?xsec_token=ABPMXCcXcEvtHUgkaDAZ8jdRYq4DP9g72BseXDCl9ccQ4=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/自然风光/江西武功山/吊马庄.jpg" alt="">
+          <button class="favorite-btn" data-id="wugongshan-diaomazhuang" data-name="吊马庄"
+            data-image="./旅游图片/自然风光/江西武功山/吊马庄.jpg" data-description="高山草甸与云海交织，是徒步者最爱的营地之一">☆</button>
+          <h5>吊马庄</h5>
+          <p>高山草甸与云海交织，是徒步者最爱的营地之一</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/自然风光/江西武功山/日出.jpg" alt="">
+          <button class="favorite-btn" data-id="wugongshan-riChu" data-name="日出" data-image="./旅游图片/自然风光/江西武功山/日出.jpg"
+            data-description="清晨登顶，云海翻涌，金轮破雾而出，天地瞬间被点亮">☆</button>
+          <h5>日出</h5>
+          <p>清晨登顶，云海翻涌，金轮破雾而出，天地瞬间被点亮</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/自然风光/江西武功山/烟花.png" alt="">
+          <button class="favorite-btn" data-id="wugongshan-yanhua" data-name="烟花" data-image="./旅游图片/自然风光/江西武功山/烟花.png"
+            data-description="夜幕降临，高山草甸燃起绚烂烟花，星空与火光交织，浪漫至极">☆</button>
+          <h5>烟花</h5>
+          <p>夜幕降临，高山草甸燃起绚烂烟花，星空与火光交织，浪漫至极</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/自然风光/江西武功山/金顶云海.jpg" alt="">
+          <button class="favorite-btn" data-id="wugongshan-yunhai" data-name="金顶云海"
+            data-image="./旅游图片/自然风光/江西武功山/金顶云海.jpg" data-description="站在金顶俯瞰，云海翻涌如万顷波涛，天地辽阔，心随云动">☆</button>
+          <h5>金顶云海</h5>
+          <p>站在金顶俯瞰，云海翻涌如万顷波涛，天地辽阔，心随云动</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 初始化页面
+    async function initPage() {
+      console.log('开始初始化自然风光页面');
+
+      // 等待后端可用性检测完成
+      console.log('等待后端可用性检测完成...');
+      await new Promise(resolve => {
+        const checkBackendStatus = () => {
+          if (typeof window.BACKEND_AVAILABLE !== 'undefined') {
+            console.log('后端可用性检测完成:', window.BACKEND_AVAILABLE);
+            resolve();
+          } else {
+            console.log('后端可用性检测未完成，继续等待...');
+            setTimeout(checkBackendStatus, 100);
+          }
+        };
+        checkBackendStatus();
+      });
+
+      // 再次检查后端可用性，确保检测完成
+      if (typeof window.BACKEND_AVAILABLE === 'undefined') {
+        console.log('后端可用性检测仍未完成，强制等待2秒...');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+
+      try {
+        // 使用getItems接口获取所有自然风光类型的景点
+        const allNatureSpots = await getItems('attraction');
+        console.log('获取到的自然风光景点:', allNatureSpots);
+        console.log('景点数量:', allNatureSpots.length);
+
+        // 渲染所有容器的景点
+        const containers = document.querySelectorAll('.container');
+        console.log('找到的容器数量:', containers.length);
+        
+        for (let containerIndex = 0; containerIndex < containers.length; containerIndex++) {
+          const container = containers[containerIndex];
+          // 从h1标题获取城市名称
+          const h1 = container.querySelector('h1');
+          const cityName = h1 ? h1.textContent.trim() : '';
+          console.log('容器', containerIndex + 1, '标题:', cityName);
+
+          // 找到卡片容器
+          const cardContainer = container.querySelector('.col:last-child');
+          if (!cardContainer) {
+            console.error('没有找到卡片容器');
+            continue;
+          }
+
+          // 获取当前城市的景点（使用place_name匹配）
+          const citySpecificSpots = allNatureSpots.filter(spot => {
+            // 使用place_name或name字段匹配
+            const spotPlaceName = spot.place_name || spot.name || '';
+            return spotPlaceName.includes(cityName) || cityName.includes(spotPlaceName);
+          });
+          
+          console.log(cityName, '的景点数量:', citySpecificSpots.length);
+          console.log(cityName, '的景点:', citySpecificSpots);
+
+          // 如果有后端数据，更新卡片
+          if (citySpecificSpots.length > 0) {
+            console.log(cityName, '有后端景点数据，更新卡片');
+
+            // 获取现有的卡片
+            const existingCards = cardContainer.querySelectorAll('.card');
+            console.log('现有卡片数量:', existingCards.length);
+
+            // 更新现有卡片
+            citySpecificSpots.forEach((spot, spotIndex) => {
+              if (existingCards[spotIndex]) {
+                console.log('更新第', spotIndex + 1, '个卡片:', spot.name);
+                const card = existingCards[spotIndex];
+
+                // 获取图片URL
+                let imageUrl = spot.image_url || '';
+                console.log('原始图片URL:', imageUrl);
+                
+                // 处理图片URL
+                if (imageUrl) {
+                  if (imageUrl.startsWith('http://localhost:3000')) {
+                    imageUrl = imageUrl.replace('http://localhost:3000', 'http://10.13.99.225:3000');
+                  }
+                  console.log('处理后的图片URL:', imageUrl);
+                  // 更新图片
+                  const img = card.querySelector('img');
+                  if (img) img.src = imageUrl;
+                } else {
+                  console.log('没有图片URL，保持原有图片');
+                }
+                
+                // 更新标题和描述
+                const titleEl = card.querySelector('h5');
+                const descEl = card.querySelector('p');
+                if (titleEl) titleEl.textContent = spot.name;
+                if (descEl) descEl.textContent = spot.description || spot.subtitle || '';
+                
+                // 更新收藏按钮的data属性
+                const favoriteBtn = card.querySelector('.favorite-btn');
+                if (favoriteBtn) {
+                  favoriteBtn.setAttribute('data-id', spot.id);
+                  favoriteBtn.setAttribute('data-name', spot.name);
+                  favoriteBtn.setAttribute('data-image', spot.image_url || '');
+                  favoriteBtn.setAttribute('data-description', spot.description || spot.subtitle || '');
+                }
+              }
+            });
+          } else {
+            console.log(cityName, '没有后端景点数据，保持原有静态卡片');
+          }
+        }
+      } catch (error) {
+        console.error('初始化页面失败:', error);
+        // 即使API请求失败，也保持原有静态卡片
+        console.log('API请求失败，保持原有静态卡片');
+      }
+    }
+
+    // 滚动触发的动画效果
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        } else {
+          entry.target.style.opacity = 0;
+          entry.target.style.transform = 'translateY(50px)';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    fadeElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    // 滚动结束后停在完整页面
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // 检查是否滚动到了页面顶部（导航栏区域）
+        if (window.scrollY < 100) {
+          return; // 停在导航栏区域
+        }
+
+        // 检查是否滚动到了页面底部
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+          return; // 停在页面底部
+        }
+
+        const containers = document.querySelectorAll('.container');
+        let closestContainer = null;
+        let minDistance = Infinity;
+
+        containers.forEach(container => {
+          const rect = container.getBoundingClientRect();
+          const distance = Math.abs(rect.top);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestContainer = container;
+          }
+        });
+
+        // 只有当距离足够大时才进行滚动，避免小幅度的跳动
+        if (closestContainer && minDistance > 50) {
+          closestContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500); // 增加定时器时间，减少滚动触发的频率
+    });
+
+    // 页面加载时初始化
+    console.log('页面脚本加载完成');
+    window.addEventListener('DOMContentLoaded', async function () {
+      console.log('DOMContentLoaded事件触发');
+      await initPage();
+      initFavoriteButtons();
+    });
+  </script>
+
+  <!-- 底部界面 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>关于我们</h3>
+        <p>途游旅游是一个专注于提供优质旅游信息和服务的平台，致力于为旅行者提供真实、全面的旅游攻略和目的地信息。我们希望通过我们的努力，让每一次旅行都成为难忘的回忆。</p>
+      </div>
+      <div class="footer-section">
+        <h3>图片来源</h3>
+        <p>本网站所有图片均来源于互联网，版权归原作者所有。如有侵权，请联系我们删除。</p>
+      </div>
+      <div class="footer-section">
+        <h3>给我们留言</h3>
+        <form class="contact-form" action="mailto:1502055165@qq.com" method="post" enctype="text/plain">
+          <input type="text" placeholder="您的姓名" name="name" required>
+          <input type="email" placeholder="您的邮箱" name="email" required>
+          <textarea placeholder="您的留言" rows="3" name="message" required></textarea>
+          <button type="submit">提交留言</button>
+        </form>
+        <p style="margin-top: 10px; font-size: 14px; color: #999;">我们的联系邮箱：1502055165@qq.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 途游旅游 版权所有</p>
+    </div>
+  </footer>
+</body>
+
+</html>

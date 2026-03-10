@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>途游旅游 - 小众秘境</title>
+  <link rel="stylesheet" href="网页.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="网页.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #66afea 0%, #6b4ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      height: 100vh;
+      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./旅游图片/文艺小众/甘孜/甘孜1.jpg);
+      background-position: center;
+      background-size: cover;
+      padding-left: 8%;
+      padding-right: 8%;
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+      height: 88%;
+      align-items: center;
+    }
+
+    .col {
+      flex-basis: 50%;
+    }
+
+    .col:last-child {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 60px;
+    }
+
+    p {
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    button {
+      width: 180px;
+      color: #000;
+      font-size: 12px;
+      padding: 12px 0;
+      background: #fff;
+      border: 0;
+      border-radius: 20px;
+      outline: none;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      width: 250px;
+      height: 200px;
+      display: inline-block;
+      border-radius: 10px;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: pointer;
+      margin: 10px 15px;
+      background-position: center;
+      background-size: cover;
+      transition: transform 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .card h5,
+    .card p {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      padding: 15px 25px;
+    }
+
+    .card2 {
+      background-image: url(./旅游图片/文艺小众/甘孜/甘孜2.jpg);
+    }
+
+    .card3 {
+      background-image: url(./旅游图片/文艺小众/甘孜/甘孜3.jpg);
+    }
+
+    .card4 {
+      background-image: url(./旅游图片/文艺小众/甘孜/甘孜4.jpg);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    h5 {
+      color: #fff;
+      text-shadow: 0 0 5px #999;
+      position: absolute;
+      top: -40px;
+      text-align: center;
+
+      font-size: 30px;
+    }
+
+    .card p {
+      text-shadow: 0 0 5px #000;
+      font-size: 18px;
+      position: absolute;
+      bottom: -10px;
+      text-align: center;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="slide1"></div>
+      <div class="slide2"></div>
+      <ul id="nav">
+        <li><a href="./网页.html">首页</a></li>
+        <li><a href="./古城古镇网页.html">古城古镇</a></li>
+        <li><a href="./自然风光网页.html">自然风光</a></li>
+        <li><a href="./城市漫游网页.html">城市漫游</a></li>
+        <li data-current="true"><a href="./小众秘境.html">小众秘境</a></li>
+        <li><a href="./游记分享.html">游记分享</a></li>
+        <li><a href="./我的.html">我的</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <div class="container fade-in"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./旅游图片/小众秘境/广西凤山/广西凤山.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="广西风山">广西风山</h1>
+        <p>
+          一座被时光遗忘的喀斯特仙境。来风山，用耳朵听石头生长，用眼睛看时间发光。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/697d9706000000000903a003?xsec_token=ABIE6vRXcT_ZzKC4lY_9nYfr1HfF4j3_iH4MoTBmCs6-k=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/小众秘境/广西凤山/广西凤山1.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-daocheng" data-name="稻城亚丁" data-image="./旅游图片/文艺小众/甘孜/甘孜1.jpg"
+            data-description="蓝色星球上的最后一片净土，雪山、草甸、湖泊的完美融合">☆</button>
+          <h5>稻城亚丁</h5>
+          <p>蓝色星球上的最后一片净土，雪山、草甸、湖泊的完美融合</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜2.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-seda" data-name="色达佛学院" data-image="./旅游图片/文艺小众/甘孜/甘孜2.jpg"
+            data-description="红色的僧舍，金色的佛塔，心灵的净化之地">☆</button>
+          <h5>色达佛学院</h5>
+          <p>红色的僧舍，金色的佛塔，心灵的净化之地</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜3.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-hailuogou" data-name="海螺沟" data-image="./旅游图片/文艺小众/甘孜/甘孜3.jpg"
+            data-description="低海拔冰川，温泉与雪山的奇妙组合">☆</button>
+          <h5>海螺沟</h5>
+          <p>低海拔冰川，温泉与雪山的奇妙组合</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜4.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-xinduqiao" data-name="新都桥" data-image="./旅游图片/文艺小众/甘孜/甘孜4.jpg"
+            data-description="摄影师的天堂，光影变幻的田园风光">☆</button>
+          <h5>新都桥</h5>
+          <p>摄影师的天堂，光影变幻的田园风光</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container fade-in"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./旅游图片/小众秘境/云南西双版纳热带雨林/西双版纳.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="西双版纳">西双版纳</h1>
+        <p>
+          北回归线上唯一的绿洲，中国唯一的热带雨林自然保护区。来这里，在傣族竹楼里听夜雨，在望天树下呼吸地球之肺的清新。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/69148f03000000000d039776?xsec_token=ABxCazR_8ZvU8oG7f-xXDAhieiIMds-8A9IqquOyrTMtc=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜1.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-daocheng-2" data-name="稻城亚丁" data-image="./旅游图片/文艺小众/甘孜/甘孜1.jpg"
+            data-description="蓝色星球上的最后一片净土，雪山、草甸、湖泊的完美融合">☆</button>
+          <h5>稻城亚丁</h5>
+          <p>蓝色星球上的最后一片净土，雪山、草甸、湖泊的完美融合</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜2.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-seda-2" data-name="色达佛学院" data-image="./旅游图片/文艺小众/甘孜/甘孜2.jpg"
+            data-description="红色的僧舍，金色的佛塔，心灵的净化之地">☆</button>
+          <h5>色达佛学院</h5>
+          <p>红色的僧舍，金色的佛塔，心灵的净化之地</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜3.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-hailuogou-2" data-name="海螺沟" data-image="./旅游图片/文艺小众/甘孜/甘孜3.jpg"
+            data-description="低海拔冰川，温泉与雪山的奇妙组合">☆</button>
+          <h5>海螺沟</h5>
+          <p>低海拔冰川，温泉与雪山的奇妙组合</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜4.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-xinduqiao-2" data-name="新都桥" data-image="./旅游图片/文艺小众/甘孜/甘孜4.jpg"
+            data-description="摄影师的天堂，光影变幻的田园风光">☆</button>
+          <h5>新都桥</h5>
+          <p>摄影师的天堂，光影变幻的田园风光</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container fade-in"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./旅游图片/小众秘境/湖北黄石地心大峡谷/湖北黄石地心大峡谷.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="黄石大峡谷">湖北黄石地心大峡谷</h1>
+        <p>
+          一条通往地心的裂缝，亿万年水流雕刻出的地下宫殿。峡谷深处，瀑布从头顶倾泻，阳光透过裂缝洒下，仿佛置身地球的心脏。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/68e9abd8000000000402a518?xsec_token=ABR03ew9DSY6vzO62eYFKC7AlOCxjXJF7JsJ2IfPPxmQU=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜1.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-daocheng-3" data-name="稻城亚丁" data-image="./旅游图片/文艺小众/甘孜/甘孜1.jpg"
+            data-description="蓝色星球上的最后一片净土，雪山、草甸、湖泊的完美融合">☆</button>
+          <h5>稻城亚丁</h5>
+          <p>蓝色星球上的最后一片净土，雪山、草甸、湖泊的完美融合</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜2.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-seda-3" data-name="色达佛学院" data-image="./旅游图片/文艺小众/甘孜/甘孜2.jpg"
+            data-description="红色的僧舍，金色的佛塔，心灵的净化之地">☆</button>
+          <h5>色达佛学院</h5>
+          <p>红色的僧舍，金色的佛塔，心灵的净化之地</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜3.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-hailuogou-3" data-name="海螺沟" data-image="./旅游图片/文艺小众/甘孜/甘孜3.jpg"
+            data-description="低海拔冰川，温泉与雪山的奇妙组合">☆</button>
+          <h5>海螺沟</h5>
+          <p>低海拔冰川，温泉与雪山的奇妙组合</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/文艺小众/甘孜/甘孜4.jpg" alt="">
+          <button class="favorite-btn" data-id="ganzi-xinduqiao-3" data-name="新都桥" data-image="./旅游图片/文艺小众/甘孜/甘孜4.jpg"
+            data-description="摄影师的天堂，光影变幻的田园风光">☆</button>
+          <h5>新都桥</h5>
+          <p>摄影师的天堂，光影变幻的田园风光</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 初始化页面
+    async function initPage() {
+      console.log('开始初始化小众秘境页面');
+
+      // 等待后端可用性检测完成
+      console.log('等待后端可用性检测完成...');
+      await new Promise(resolve => {
+        const checkBackendStatus = () => {
+          if (typeof window.BACKEND_AVAILABLE !== 'undefined') {
+            console.log('后端可用性检测完成:', window.BACKEND_AVAILABLE);
+            resolve();
+          } else {
+            console.log('后端可用性检测未完成，继续等待...');
+            setTimeout(checkBackendStatus, 100);
+          }
+        };
+        checkBackendStatus();
+      });
+
+      // 再次检查后端可用性，确保检测完成
+      if (typeof window.BACKEND_AVAILABLE === 'undefined') {
+        console.log('后端可用性检测仍未完成，强制等待2秒...');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+
+      try {
+        // 使用getItems接口获取所有小众秘境类型的景点
+        const allSecretSpots = await getItems('attraction');
+        console.log('获取到的小众秘境景点:', allSecretSpots);
+        console.log('景点数量:', allSecretSpots.length);
+
+        // 渲染所有容器的景点
+        const containers = document.querySelectorAll('.container');
+        console.log('找到的容器数量:', containers.length);
+
+        for (let containerIndex = 0; containerIndex < containers.length; containerIndex++) {
+          const container = containers[containerIndex];
+          // 从h1标题获取地点名称
+          const h1 = container.querySelector('h1');
+          const placeName = h1 ? h1.textContent.trim() : '';
+          console.log('容器', containerIndex + 1, '标题:', placeName);
+
+          // 找到卡片容器
+          const cardContainer = container.querySelector('.col:last-child');
+          if (!cardContainer) {
+            console.error('没有找到卡片容器');
+            continue;
+          }
+
+          // 获取当前地点的景点（使用place_name匹配）
+          const placeSpots = allSecretSpots.filter(spot => {
+            // 使用place_name或name字段匹配
+            const spotPlaceName = spot.place_name || spot.name || '';
+            return spotPlaceName.includes(placeName) || placeName.includes(spotPlaceName);
+          });
+
+          console.log(placeName, '的景点数量:', placeSpots.length);
+          console.log(placeName, '的景点:', placeSpots);
+
+          // 如果有后端数据，更新卡片
+          if (placeSpots.length > 0) {
+            console.log(placeName, '有后端景点数据，更新卡片');
+
+            // 获取现有的卡片
+            const existingCards = cardContainer.querySelectorAll('.card');
+            console.log('现有卡片数量:', existingCards.length);
+
+            // 更新现有卡片
+            placeSpots.forEach((spot, spotIndex) => {
+              if (existingCards[spotIndex]) {
+                console.log('更新第', spotIndex + 1, '个卡片:', spot.name);
+                const card = existingCards[spotIndex];
+
+                // 获取图片URL
+                let imageUrl = spot.image_url || '';
+                console.log('原始图片URL:', imageUrl);
+
+                // 处理图片URL
+                if (imageUrl) {
+                  // 修复重复的http://前缀问题
+                  if (imageUrl.startsWith('http://http://')) {
+                    imageUrl = imageUrl.replace('http://http://', 'http://');
+                  }
+                  // 处理localhost:3000的情况
+                  if (imageUrl.includes('localhost:3000')) {
+                    imageUrl = imageUrl.replace('localhost:3000', '10.13.99.225:3000');
+                  }
+                  console.log('处理后的图片URL:', imageUrl);
+                  // 更新图片
+                  const img = card.querySelector('img');
+                  if (img) img.src = imageUrl;
+                } else {
+                  console.log('没有图片URL，保持原有图片');
+                }
+
+                // 更新标题和描述
+                const titleEl = card.querySelector('h5');
+                const descEl = card.querySelector('p');
+                if (titleEl) titleEl.textContent = spot.name;
+                if (descEl) descEl.textContent = spot.description || spot.subtitle || '';
+
+                // 更新收藏按钮的data属性
+                const favoriteBtn = card.querySelector('.favorite-btn');
+                if (favoriteBtn) {
+                  favoriteBtn.setAttribute('data-id', spot.id);
+                  favoriteBtn.setAttribute('data-name', spot.name);
+                  favoriteBtn.setAttribute('data-image', spot.image_url || '');
+                  favoriteBtn.setAttribute('data-description', spot.description || spot.subtitle || '');
+                }
+              }
+            });
+          } else {
+            console.log(placeName, '没有后端景点数据，保持原有静态卡片');
+          }
+        }
+      } catch (error) {
+        console.error('初始化页面失败:', error);
+        // 即使API请求失败，也保持原有静态卡片
+        console.log('API请求失败，保持原有静态卡片');
+      }
+    }
+
+    // 滚动触发的动画效果
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        } else {
+          entry.target.style.opacity = 0;
+          entry.target.style.transform = 'translateY(50px)';
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    fadeElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    // 滚动结束后停在完整页面
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // 检查是否滚动到了页面顶部（导航栏区域）
+        if (window.scrollY < 100) {
+          return; // 停在导航栏区域
+        }
+
+        // 检查是否滚动到了页面底部
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+          return; // 停在页面底部
+        }
+
+        const containers = document.querySelectorAll('.container');
+        let closestContainer = null;
+        let minDistance = Infinity;
+
+        containers.forEach(container => {
+          const rect = container.getBoundingClientRect();
+          const distance = Math.abs(rect.top);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestContainer = container;
+          }
+        });
+
+        // 只有当距离足够大时才进行滚动，避免小幅度的跳动
+        if (closestContainer && minDistance > 50) {
+          closestContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500); // 增加定时器时间，减少滚动触发的频率
+    });
+
+    // 页面加载时初始化
+    console.log('页面脚本加载完成');
+    window.addEventListener('DOMContentLoaded', async function () {
+      console.log('DOMContentLoaded事件触发');
+      await initPage();
+      initFavoriteButtons();
+    });
+  </script>
+
+  <!-- 底部界面 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>关于我们</h3>
+        <p>途游旅游是一个专注于提供优质旅游信息和服务的平台，致力于为旅行者提供真实、全面的旅游攻略和目的地信息。我们希望通过我们的努力，让每一次旅行都成为难忘的回忆。</p>
+      </div>
+      <div class="footer-section">
+        <h3>图片来源</h3>
+        <p>本网站所有图片均来源于互联网，版权归原作者所有。如有侵权，请联系我们删除。</p>
+      </div>
+      <div class="footer-section">
+        <h3>给我们留言</h3>
+        <form class="contact-form" action="mailto:1502055165@qq.com" method="post" enctype="text/plain">
+          <input type="text" placeholder="您的姓名" name="name" required>
+          <input type="email" placeholder="您的邮箱" name="email" required>
+          <textarea placeholder="您的留言" rows="3" name="message" required></textarea>
+          <button type="submit">提交留言</button>
+        </form>
+        <p style="margin-top: 10px; font-size: 14px; color: #999;">我们的联系邮箱：1502055165@qq.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 途游旅游 版权所有</p>
+    </div>
+  </footer>
+</body>
+
+</html>

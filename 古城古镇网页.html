@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>途游旅游</title>
+  <link rel="stylesheet" href="网页.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="网页.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #66afea 0%, #6b4ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      height: 100vh;
+      background-position: center;
+      background-size: cover;
+      padding-left: 8%;
+      padding-right: 8%;
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+      height: 88%;
+      align-items: center;
+    }
+
+    .col {
+      flex-basis: 50%;
+    }
+
+    .col:last-child {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 60px;
+    }
+
+    p {
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    button {
+      width: 180px;
+      color: #000;
+      font-size: 12px;
+      padding: 12px 0;
+      background: #fff;
+      border: 0;
+      border-radius: 20px;
+      outline: none;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      width: 250px;
+      height: 200px;
+      display: inline-block;
+      border-radius: 10px;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: pointer;
+      margin: 10px 15px;
+      background-position: center;
+      background-size: cover;
+      transition: transform 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .card h5,
+    .card p {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      padding: 15px 25px;
+    }
+
+    .card2 {
+      background-image: url(./旅游图片/古城古镇/湖南凤凰古城/古城湖南1.jpg);
+    }
+
+    .card3 {
+      background-image: url(img/pic-3.png);
+    }
+
+    .card4 {
+      background-image: url(img/pic-4.png);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    h5 {
+      color: #fff;
+      text-shadow: 0 0 5px #999;
+      position: absolute;
+      top: -40px;
+      text-align: center;
+
+      font-size: 30px;
+    }
+
+    .card p {
+      text-shadow: 0 0 5px #000;
+      font-size: 18px;
+      position: absolute;
+      bottom: -10px;
+      text-align: center;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="slide1"></div>
+      <div class="slide2"></div>
+      <ul id="nav">
+        <li><a href="./网页.html">首页</a></li>
+        <li data-current="true"><a href="./古城古镇网页.html">古城古镇</a></li>
+        <li><a href="./自然风光网页.html">自然风光</a></li>
+        <li><a href="./城市漫游网页.html">城市漫游</a></li>
+        <li><a href="./小众秘境.html">小众秘境</a></li>
+        <li><a href="./游记分享.html">游记分享</a></li>
+        <li><a href="./我的.html">我的</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <div class="container fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./旅游图片/古城古镇/湖南凤凰古城/凤凰古镇背景.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="湖南凤凰古城">湖南凤凰古城</h1>
+        <p>
+          凤凰古城，位于湘西沱江之畔，千年吊脚楼与青石板巷交织，灯火阑珊处，苗族银饰叮当，仿佛沈从文笔下的《边城》缓缓走来。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/6462fb22000000001203fdf6?xsec_token=AB3s_0nWj70uR1RDzayLrGfv2Ri2ZCWTdBG58qjLuXmko=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/古城古镇/湖南凤凰古城/古城湖南1.jpg" alt="">
+          <button class="favorite-btn" data-id="fenghuang-xueqiao" data-name="雪桥"
+            data-image="./旅游图片/古城古镇/湖南凤凰古城/古城湖南1.jpg" data-description="凤凰的桥，是路，是景，更是浪漫">☆</button>
+          <h5>雪桥</h5>
+          <p>凤凰的桥，是路，是景，更是浪漫</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/古城古镇/湖南凤凰古城/翠茶.jpg" alt="">
+          <button class="favorite-btn" data-id="fenghuang-cuicha" data-name="翠茶" data-image="./旅游图片/古城古镇/湖南凤凰古城/翠茶.jpg"
+            data-description="墨香鲜奶，特色古韵，当地茶饮">☆</button>
+          <h5>翠茶</h5>
+          <p>墨香鲜奶，特色古韵，当地茶饮</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/古城古镇/湖南凤凰古城/虾饼.jpg" alt="">
+          <button class="favorite-btn" data-id="fenghuang-xiabing" data-name="满食虾饼"
+            data-image="./旅游图片/古城古镇/湖南凤凰古城/虾饼.jpg" data-description="香脆新鲜，小吃里的王炸美味">☆</button>
+          <h5>满食虾饼</h5>
+          <p>香脆新鲜，小吃里的王炸美味</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/古城古镇/湖南凤凰古城/古城湖南4.jpg" alt="">
+          <button class="favorite-btn" data-id="fenghuang-wanmingta" data-name="万名塔"
+            data-image="./旅游图片/古城古镇/湖南凤凰古城/古城湖南4.jpg" data-description="江畔七层古塔，昔焚文字，今作地标">☆</button>
+          <h5>万名塔</h5>
+          <p>江畔七层古塔，昔焚文字，今作地标
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./旅游图片/古城古镇/浙江乌镇/乌镇背景.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="浙江乌镇">浙江乌镇</h1>
+        <p>
+          乌镇，水巷石桥、白墙黛瓦，桨声灯影里，千年江南的温柔在夜色中缓缓铺展。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/6865010e000000002203f904?xsec_token=ABEwKdp8ADPFLtzm2ZzH_bsmXXQkUCqXlIh_Za5ZKmJiY=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/古城古镇/浙江乌镇/漫游水巷.jpg" alt="">
+          <button class="favorite-btn" data-id="wuzhen-shuixiang" data-name="漫游水巷"
+            data-image="./旅游图片/古城古镇/浙江乌镇/漫游水巷.jpg" data-description="我本无意入江南，奈何江南入我心">☆</button>
+          <h5 id="1.2.1">漫游水巷</h5>
+          <p>我本无意入江南，奈何江南入我心</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/古城古镇/浙江乌镇/草本染色.jpg" alt="">
+          <button class="favorite-btn" data-id="wuzhen-ranfang" data-name="草本本色染坊"
+            data-image="./旅游图片/古城古镇/浙江乌镇/草本染色.jpg" data-description="自由DIY，专属于自己的蓝白布料">☆</button>
+          <h5 id="1.2.2">草本本色染坊</h5>
+          <p>自由DIY，专属于自己的蓝白布料</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/古城古镇/浙江乌镇/徐记糕点.jpg" alt="">
+          <button class="favorite-btn" data-id="wuzhen-xuji" data-name="徐记糕点" data-image="./旅游图片/古城古镇/浙江乌镇/徐记糕点.jpg"
+            data-description="定胜糕龙记糕肉松乌米饭">☆</button>
+          <h5 id="1.2.3">徐记糕点</h5>
+          <p>定胜糕龙记糕肉松乌米饭</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/古城古镇/浙江乌镇/昭明书院.jpg" alt="">
+          <button class="favorite-btn" data-id="wuzhen-zhaoming" data-name="昭明书院" data-image="./旅游图片/古城古镇/浙江乌镇/昭明书院.jpg"
+            data-description="南朝梁昭明太子萧统读书处">☆</button>
+          <h5 id="1.2.4">昭明书院</h5>
+          <p>南朝梁昭明太子萧统读书处
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container fade-in" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url(./旅游图片/古城古镇/南浔古镇/南浔古镇背景.png);">
+    <div class="row">
+      <div class="col">
+        <h1 id="南浔古镇">南浔古镇</h1>
+        <p>
+          南浔古镇，位于浙江省嘉兴市，是一个以历史建筑、文化遗产和美食为特色的古镇。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/6853df20000000001002428d?xsec_token=ABzPVYT2gy_HwKT_ckW0j4a4S3UgUA3VHFgZIS5Ckw37k=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/古城古镇/南浔古镇/小莲庄.jpg" alt="">
+          <button class="favorite-btn" data-id="nanxun-xiaolianzhuang" data-name="小莲庄"
+            data-image="./旅游图片/古城古镇/南浔古镇/小莲庄.jpg" data-description="接天莲叶无穷，映日荷花别样红">☆</button>
+          <h5 id="1.3.1">小莲庄</h5>
+          <p>接天莲叶无穷，映日荷花别样红</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/古城古镇/南浔古镇/官也糖水铺.jpg" alt="">
+          <button class="favorite-btn" data-id="nanxun-guanye" data-name="官也糖水铺" data-image="./旅游图片/古城古镇/南浔古镇/官也糖水铺.jpg"
+            data-description="颜值味道双一流，必吃清单">☆</button>
+          <h5 id="1.3.2">官也糖水铺</h5>
+          <p>颜值味道双一流，必吃清单</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/古城古镇/南浔古镇/蟹黄面.jpg" alt="">
+          <button class="favorite-btn" data-id="nanxun-xiehuang" data-name="蟹黄面" data-image="./旅游图片/古城古镇/南浔古镇/蟹黄面.jpg"
+            data-description="浓郁蟹黄味道，赏美景，吃佳食">☆</button>
+          <h5 id="1.3.3">蟹黄面</h5>
+          <p>浓郁蟹黄味道，赏美景，吃佳食
+          </p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/古城古镇/南浔古镇/春兰茶室.jpg" alt="">
+          <button class="favorite-btn" data-id="nanxun-chunlan" data-name="春兰茶室" data-image="./旅游图片/古城古镇/南浔古镇/春兰茶室.jpg"
+            data-description="古色古香古建筑，打卡圣地">☆</button>
+          <h5 id="1.3.4">春兰茶室</h5>
+          <p>古色古香古建筑，打卡圣地
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 初始化页面
+    async function initPage() {
+      console.log('开始初始化古城古镇页面');
+
+      // 等待后端可用性检测完成
+      console.log('等待后端可用性检测完成...');
+      await new Promise(resolve => {
+        const checkBackendStatus = () => {
+          if (typeof window.BACKEND_AVAILABLE !== 'undefined') {
+            console.log('后端可用性检测完成:', window.BACKEND_AVAILABLE);
+            resolve();
+          } else {
+            console.log('后端可用性检测未完成，继续等待...');
+            setTimeout(checkBackendStatus, 100);
+          }
+        };
+        checkBackendStatus();
+      });
+
+      // 再次检查后端可用性，确保检测完成
+      if (typeof window.BACKEND_AVAILABLE === 'undefined') {
+        console.log('后端可用性检测仍未完成，强制等待2秒...');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+
+      try {
+        // 使用getItems接口获取所有古城古镇类型的景点
+        const allAncientTownSpots = await getItems('attraction');
+        console.log('获取到的古城古镇景点:', allAncientTownSpots);
+        console.log('景点数量:', allAncientTownSpots.length);
+
+        // 渲染所有容器的景点
+        const containers = document.querySelectorAll('.container');
+        console.log('找到的容器数量:', containers.length);
+
+        for (let containerIndex = 0; containerIndex < containers.length; containerIndex++) {
+          const container = containers[containerIndex];
+          // 从h1标题获取城市名称
+          const h1 = container.querySelector('h1');
+          const cityName = h1 ? h1.textContent.trim() : '';
+          console.log('容器', containerIndex + 1, '标题:', cityName);
+
+          // 找到卡片容器
+          const cardContainer = container.querySelector('.col:last-child');
+          if (!cardContainer) {
+            console.error('没有找到卡片容器');
+            continue;
+          }
+
+          // 获取当前城市的景点（使用place_name匹配）
+          const citySpecificSpots = allAncientTownSpots.filter(spot => {
+            // 使用place_name或name字段匹配
+            const spotPlaceName = spot.place_name || spot.name || '';
+            return spotPlaceName.includes(cityName) || cityName.includes(spotPlaceName);
+          });
+
+          console.log(cityName, '的景点数量:', citySpecificSpots.length);
+          console.log(cityName, '的景点:', citySpecificSpots);
+
+          // 如果有后端数据，更新卡片
+          if (citySpecificSpots.length > 0) {
+            console.log(cityName, '有后端景点数据，更新卡片');
+
+            // 获取现有的卡片
+            const existingCards = cardContainer.querySelectorAll('.card');
+            console.log('现有卡片数量:', existingCards.length);
+
+            // 更新现有卡片
+            citySpecificSpots.forEach((spot, spotIndex) => {
+              if (existingCards[spotIndex]) {
+                console.log('更新第', spotIndex + 1, '个卡片:', spot.name);
+                const card = existingCards[spotIndex];
+
+                // 获取图片URL
+                let imageUrl = spot.image_url || '';
+                console.log('原始图片URL:', imageUrl);
+
+                // 处理图片URL
+                if (imageUrl) {
+                  if (imageUrl.startsWith('http://localhost:3000')) {
+                    imageUrl = imageUrl.replace('http://localhost:3000', 'http://10.13.99.225:3000');
+                  }
+                  console.log('处理后的图片URL:', imageUrl);
+                  // 更新图片
+                  const img = card.querySelector('img');
+                  if (img) img.src = imageUrl;
+                } else {
+                  console.log('没有图片URL，保持原有图片');
+                }
+
+                // 更新标题和描述
+                const titleEl = card.querySelector('h5');
+                const descEl = card.querySelector('p');
+                if (titleEl) titleEl.textContent = spot.name;
+                if (descEl) descEl.textContent = spot.description || spot.subtitle || '';
+
+                // 更新收藏按钮的data属性
+                const favoriteBtn = card.querySelector('.favorite-btn');
+                if (favoriteBtn) {
+                  favoriteBtn.setAttribute('data-id', spot.id);
+                  favoriteBtn.setAttribute('data-name', spot.name);
+                  favoriteBtn.setAttribute('data-image', spot.image_url || '');
+                  favoriteBtn.setAttribute('data-description', spot.description || spot.subtitle || '');
+                }
+              }
+            });
+          } else {
+            console.log(cityName, '没有后端景点数据，保持原有静态卡片');
+          }
+        }
+      } catch (error) {
+        console.error('初始化页面失败:', error);
+        // 即使API请求失败，也保持原有静态卡片
+        console.log('API请求失败，保持原有静态卡片');
+      }
+    }
+
+    // 滚动触发的动画效果
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          // 一旦元素进入视口并显示，就停止观察它，这样它就会保持可见状态
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    fadeElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    // 滚动结束后停在完整页面
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // 检查是否滚动到了页面顶部（导航栏区域）
+        if (window.scrollY < 100) {
+          return; // 停在导航栏区域
+        }
+
+        // 检查是否滚动到了页面底部
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+          return; // 停在页面底部
+        }
+
+        const containers = document.querySelectorAll('.container');
+        let closestContainer = null;
+        let minDistance = Infinity;
+
+        containers.forEach(container => {
+          const rect = container.getBoundingClientRect();
+          const distance = Math.abs(rect.top);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestContainer = container;
+          }
+        });
+
+        // 只有当距离足够大时才进行滚动，避免小幅度的跳动
+        if (closestContainer && minDistance > 50) {
+          closestContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500); // 增加定时器时间，减少滚动触发的频率
+    });
+
+    // 页面加载时初始化
+    console.log('页面脚本加载完成');
+    window.addEventListener('DOMContentLoaded', async function () {
+      console.log('DOMContentLoaded事件触发');
+      await initPage();
+      initFavoriteButtons();
+    });
+  </script>
+
+  <!-- 底部界面 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>关于我们</h3>
+        <p>途游旅游是一个专注于提供优质旅游信息和服务的平台，致力于为旅行者提供真实、全面的旅游攻略和目的地信息。我们希望通过我们的努力，让每一次旅行都成为难忘的回忆。</p>
+      </div>
+      <div class="footer-section">
+        <h3>图片来源</h3>
+        <p>本网站所有图片均来源于互联网，版权归原作者所有。如有侵权，请联系我们删除。</p>
+      </div>
+      <div class="footer-section">
+        <h3>给我们留言</h3>
+        <form class="contact-form" action="mailto:1502055165@qq.com" method="post" enctype="text/plain">
+          <input type="text" placeholder="您的姓名" name="name" required>
+          <input type="email" placeholder="您的邮箱" name="email" required>
+          <textarea placeholder="您的留言" rows="3" name="message" required></textarea>
+          <button type="submit">提交留言</button>
+        </form>
+        <p style="margin-top: 10px; font-size: 14px; color: #999;">我们的联系邮箱：1502055165@qq.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 途游旅游 版权所有</p>
+    </div>
+  </footer>
+</body>
+
+</html>

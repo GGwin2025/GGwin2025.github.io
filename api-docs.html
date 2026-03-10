@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>旅游推荐网站 API 接口文档</title>
+    <style>
+        body { 
+            font-family: 'Microsoft YaHei', Arial, sans-serif; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 { 
+            color: #333; 
+            border-bottom: 3px solid #007bff; 
+            padding-bottom: 10px;
+        }
+        h2 { 
+            color: #007bff; 
+            margin-top: 30px;
+            background: #e8f0fe;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        .endpoint { 
+            background: white; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-left: 5px solid #007bff; 
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .method {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+            margin-right: 10px;
+        }
+        .get { background: #28a745; }
+        .post { background: #007bff; }
+        .put { background: #ffc107; color: #333; }
+        .delete { background: #dc3545; }
+        code { 
+            background: #f8f9fa; 
+            padding: 2px 6px; 
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+        .url {
+            font-size: 18px;
+            margin: 10px 0;
+            background: #f0f0f0;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌍 旅游推荐网站 API 接口文档</h1>
+    
+    <div class="note">
+        <strong>📌 基础信息</strong><br>
+        - 基础URL: <code>http://你的IP:3000</code>（例如：http://192.168.1.105:3000）<br>
+        - 所有接口返回格式: JSON<br>
+        - 数据库已更新：15个地方 + 60个项目（景点30个，美食30个）<br>
+        - 如果遇到跨域问题，已配置CORS，无需担心
+    </div>
+
+    <h2>🏞️ 前台接口（供前端调用）</h2>
+    
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取所有地方</strong>
+        <div class="url">/api/places</div>
+        <p><strong>功能说明：</strong>获取全部15个地方数据，用于首页展示</p>
+        <p><strong>返回示例：</strong></p>
+        <pre>[
+  {
+    "id": 1,
+    "name": "沙溪古镇",
+    "location": "云南省大理白族自治州剑川县",
+    "category": "古城古镇"
+  },
+  ...
+]</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取单个地方及其项目</strong>
+        <div class="url">/api/places/{id}</div>
+        <p><strong>功能说明：</strong>获取某个地方的详细信息及其包含的4个项目</p>
+        <p><strong>示例：</strong> <code>/api/places/1</code></p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取所有项目（景点/美食）</strong>
+        <div class="url">/api/items?type=attraction</div>
+        <p><strong>功能说明：</strong>获取所有项目，可按类型筛选</p>
+        <p><strong>参数：</strong>type - attraction(景点) 或 food(美食)</p>
+        <p><strong>示例：</strong> <code>/api/items?type=food</code>（获取所有美食）</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取单个项目详情</strong>
+        <div class="url">/api/items/{id}</div>
+        <p><strong>功能说明：</strong>获取某个景点或美食的详细信息</p>
+        <p><strong>示例：</strong> <code>/api/items/1</code></p>
+    </div>
+
+    <h2>❤️ 用户收藏接口</h2>
+
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <strong>收藏项目</strong>
+        <div class="url">/api/favorites</div>
+        <p><strong>请求体：</strong></p>
+        <pre>{
+  "user_id": 1,
+  "item_id": 5
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method delete">DELETE</span>
+        <strong>取消收藏</strong>
+        <div class="url">/api/favorites</div>
+        <p><strong>请求体：</strong></p>
+        <pre>{
+  "user_id": 1,
+  "item_id": 5
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取用户收藏列表</strong>
+        <div class="url">/api/users/{user_id}/favorites</div>
+        <p><strong>示例：</strong> <code>/api/users/1/favorites</code></p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>检查是否已收藏</strong>
+        <div class="url">/api/favorites/check?user_id=1&item_id=5</div>
+    </div>
+
+    <h2>👤 用户登录/注册接口</h2>
+
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <strong>用户登录</strong>
+        <div class="url">/api/user/login</div>
+        <p><strong>请求体：</strong></p>
+        <pre>{
+  "username": "user1",
+  "password": "123456"
+}</pre>
+    </div>
+
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <strong>用户注册</strong>
+        <div class="url">/api/user/register</div>
+        <p><strong>请求体：</strong></p>
+        <pre>{
+  "username": "newuser",
+  "password": "123456"
+}</pre>
+    </div>
+
+    <h2>⚙️ 后台管理接口（需管理员登录）</h2>
+
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <strong>管理员登录</strong>
+        <div class="url">/api/admin/login</div>
+    </div>
+
+    <div class="endpoint">
+        <span class="method put">PUT</span>
+        <strong>修改地方信息</strong>
+        <div class="url">/api/admin/places/{id}</div>
+    </div>
+
+    <div class="endpoint">
+        <span class="method put">PUT</span>
+        <strong>修改项目信息</strong>
+        <div class="url">/api/admin/items/{id}</div>
+    </div>
+
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取所有项目（管理员用）</strong>
+        <div class="url">/api/admin/items</div>
+    </div>
+
+    <h2>📸 图片上传接口</h2>
+
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <strong>上传单张图片</strong>
+        <div class="url">/api/upload/single</div>
+        <p><strong>参数：</strong>image - 图片文件</p>
+    </div>
+
+    <div class="endpoint">
+        <span class="method delete">DELETE</span>
+        <strong>删除图片</strong>
+        <div class="url">/api/upload/{文件名}</div>
+    </div>
+
+    <h2>📊 数据统计</h2>
+
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取网站统计数据</strong>
+        <div class="url">/api/stats</div>
+        <p><strong>返回示例：</strong></p>
+        <pre>{
+  "places": 15,
+  "items": 60,
+  "attractions": 30,
+  "foods": 30,
+  "users": 2,
+  "favorites": 0
+}</pre>
+    </div>
+
+    <h2>🔧 测试指南</h2>
+    <div class="endpoint">
+        <p><strong>1. 测试服务器是否运行：</strong></p>
+        <code>http://你的IP:3000/api/places</code>
+        
+        <p><strong>2. 测试后台管理页面：</strong></p>
+        <code>http://你的IP:3000/admin.html</code>
+        <p>账号：admin / 123456</p>
+        
+        <p><strong>3. 数据库信息：</strong></p>
+        <ul>
+            <li>15个地方</li>
+            <li>60个项目（景点30个，美食30个）</li>
+            <li>2个测试用户（user1/user2，密码123456）</li>
+            <li>1个管理员（admin，密码123456）</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin-top: 40px; color: #666; border-top: 1px solid #ddd; padding-top: 20px;">
+        <p>最后更新：2026年3月4日 | 数据库版本：v2.0 (places + items)</p>
+    </div>
+</body>
+</html>

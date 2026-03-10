@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>途游旅游 - 景点管理</title>
+  <link rel="stylesheet" href="网页.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="网页.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+
+    .admin-panel {
+      max-width: 1200px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #1a365d;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .form-group textarea {
+      height: 100px;
+    }
+
+    button {
+      background-color: #1a365d;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #2a4a7d;
+    }
+
+    .spot-item {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .spot-item h3 {
+      margin: 0;
+      color: #1a365d;
+    }
+
+    .spot-item p {
+      margin: 5px 0;
+      color: #666;
+    }
+
+    .spot-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .spot-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .alert {
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+    }
+
+    .alert-success {
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .alert-error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="slide1"></div>
+      <div class="slide2"></div>
+      <ul id="nav">
+        <li><a href="./网页.html">首页</a></li>
+        <li><a href="./古城古镇网页.html">古城古镇</a></li>
+        <li><a href="./自然风光网页.html">自然风光</a></li>
+        <li><a href="./城市漫游网页.html">城市漫游</a></li>
+        <li><a href="./小众秘境.html">小众秘境</a></li>
+        <li><a href="./游记分享.html">游记分享</a></li>
+        <li><a href="./我的.html">我的</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <div class="admin-panel">
+    <h2>景点管理</h2>
+
+    <!-- 消息提示 -->
+    <div id="message" class="alert" style="display: none;"></div>
+
+    <!-- 新增景点表单 -->
+    <div class="form-section">
+      <h3>新增景点</h3>
+      <form id="add-spot-form">
+        <div class="form-group">
+          <label for="name">景点名称</label>
+          <input type="text" id="name" placeholder="请输入景点名称" required>
+        </div>
+        <div class="form-group">
+          <label for="description">景点描述</label>
+          <textarea id="description" placeholder="请输入景点描述" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="imageUrl">图片URL</label>
+          <input type="text" id="imageUrl" placeholder="请输入图片URL" required>
+        </div>
+        <div class="form-group">
+          <label for="category">分类</label>
+          <select id="category" required>
+            <option value="">请选择分类</option>
+            <option value="古城古镇">古城古镇</option>
+            <option value="自然风光">自然风光</option>
+            <option value="城市漫游">城市漫游</option>
+            <option value="小众秘境">小众秘境</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="location">景点位置</label>
+          <input type="text" id="location" placeholder="请输入景点位置" required>
+        </div>
+        <button type="submit">新增景点</button>
+      </form>
+    </div>
+
+    <!-- 景点列表 -->
+    <div class="list-section">
+      <h3>景点列表</h3>
+      <div id="spots-list">
+        <!-- 动态渲染景点列表 -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // API接口地址
+    const API_BASE_URL = '/api';
+
+    // 显示消息
+    function showMessage(message, type = 'success') {
+      const messageDiv = document.getElementById('message');
+      messageDiv.textContent = message;
+      messageDiv.className = `alert alert-${type}`;
+      messageDiv.style.display = 'block';
+
+      // 3秒后隐藏消息
+      setTimeout(() => {
+        messageDiv.style.display = 'none';
+      }, 3000);
+    }
+
+    // 获取景点列表
+    async function getScenicSpots() {
+      try {
+        // 模拟数据，实际项目中替换为真实API请求
+        // const response = await fetch(`${API_BASE_URL}/scenic-spots`);
+        // const data = await response.json();
+        // return data.data.list;
+
+        // 模拟数据
+        return [
+          {
+            id: 1,
+            name: "雪桥",
+            description: "凤凰的桥，是路，是景，更是浪漫",
+            imageUrl: "./旅游图片/古城古镇/湖南凤凰古城/古城湖南1.jpg",
+            category: "古城古镇",
+            location: "湖南凤凰古城"
+          },
+          {
+            id: 2,
+            name: "翠茶",
+            description: "墨香鲜奶，特色古韵，当地茶饮",
+            imageUrl: "./旅游图片/古城古镇/湖南凤凰古城/翠茶.jpg",
+            category: "古城古镇",
+            location: "湖南凤凰古城"
+          },
+          {
+            id: 3,
+            name: "满食虾饼",
+            description: "香脆新鲜，小吃里的王炸美味",
+            imageUrl: "./旅游图片/古城古镇/湖南凤凰古城/虾饼.jpg",
+            category: "古城古镇",
+            location: "湖南凤凰古城"
+          },
+          {
+            id: 4,
+            name: "万名塔",
+            description: "江畔七层古塔，昔焚文字，今作地标",
+            imageUrl: "./旅游图片/古城古镇/湖南凤凰古城/古城湖南4.jpg",
+            category: "古城古镇",
+            location: "湖南凤凰古城"
+          }
+        ];
+      } catch (error) {
+        console.error('获取景点列表失败:', error);
+        showMessage('获取景点列表失败', 'error');
+        return [];
+      }
+    }
+
+    // 新增景点
+    async function addScenicSpot(spot) {
+      try {
+        // 模拟数据，实际项目中替换为真实API请求
+        // const response = await fetch(`${API_BASE_URL}/scenic-spots`, {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify(spot)
+        // });
+        // const data = await response.json();
+        // return data.data;
+
+        // 模拟成功响应
+        return {
+          id: Date.now(), // 生成一个唯一ID
+          ...spot
+        };
+      } catch (error) {
+        console.error('新增景点失败:', error);
+        showMessage('新增景点失败', 'error');
+        return null;
+      }
+    }
+
+    // 删除景点
+    async function deleteScenicSpot(id) {
+      try {
+        // 模拟数据，实际项目中替换为真实API请求
+        // const response = await fetch(`${API_BASE_URL}/scenic-spots/${id}`, {
+        //   method: 'DELETE'
+        // });
+        // const data = await response.json();
+        // return data.code === 200;
+
+        // 模拟成功响应
+        return true;
+      } catch (error) {
+        console.error('删除景点失败:', error);
+        showMessage('删除景点失败', 'error');
+        return false;
+      }
+    }
+
+    // 加载景点列表
+    async function loadSpotsList() {
+      const spots = await getScenicSpots();
+      const list = document.getElementById('spots-list');
+      list.innerHTML = '';
+
+      if (spots.length === 0) {
+        list.innerHTML = '<p>暂无景点数据</p>';
+        return;
+      }
+
+      spots.forEach(spot => {
+        const item = document.createElement('div');
+        item.className = 'spot-item';
+        item.innerHTML = `
+          <div style="flex: 1;">
+            <h3>${spot.name}</h3>
+            <p>${spot.description}</p>
+            <p><strong>分类:</strong> ${spot.category}</p>
+            <p><strong>位置:</strong> ${spot.location}</p>
+          </div>
+          <img src="${spot.imageUrl}" alt="${spot.name}">
+          <div class="spot-actions">
+            <button onclick="editSpot(${spot.id})">编辑</button>
+            <button onclick="confirmDelete(${spot.id})">删除</button>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    // 确认删除
+    function confirmDelete(id) {
+      if (confirm('确定删除该景点吗？')) {
+        deleteSpot(id);
+      }
+    }
+
+    // 删除景点
+    async function deleteSpot(id) {
+      const result = await deleteScenicSpot(id);
+      if (result) {
+        showMessage('删除成功');
+        // 重新加载景点列表
+        loadSpotsList();
+      } else {
+        showMessage('删除失败', 'error');
+      }
+    }
+
+    // 编辑景点（待实现）
+    function editSpot(id) {
+      showMessage('编辑功能待实现', 'error');
+    }
+
+    // 新增景点表单提交
+    document.getElementById('add-spot-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const spot = {
+        name: document.getElementById('name').value,
+        description: document.getElementById('description').value,
+        imageUrl: document.getElementById('imageUrl').value,
+        category: document.getElementById('category').value,
+        location: document.getElementById('location').value
+      };
+
+      const result = await addScenicSpot(spot);
+      if (result) {
+        showMessage('新增成功');
+        // 清空表单
+        document.getElementById('add-spot-form').reset();
+        // 重新加载景点列表
+        loadSpotsList();
+      } else {
+        showMessage('新增失败', 'error');
+      }
+    });
+
+    // 页面加载时初始化
+    window.addEventListener('DOMContentLoaded', loadSpotsList);
+  </script>
+</body>
+
+</html>

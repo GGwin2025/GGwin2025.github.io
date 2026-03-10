@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>游记分享 API 接口文档</title>
+    <style>
+        body { 
+            font-family: 'Microsoft YaHei', Arial, sans-serif; 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 { 
+            color: #333; 
+            border-bottom: 3px solid #007bff; 
+            padding-bottom: 10px;
+        }
+        h2 { 
+            color: #007bff; 
+            margin-top: 30px;
+            background: #e8f0fe;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+        h3 {
+            color: #28a745;
+            margin: 20px 0 10px;
+            padding-left: 10px;
+            border-left: 3px solid #28a745;
+        }
+        .endpoint { 
+            background: white; 
+            padding: 20px; 
+            margin: 15px 0; 
+            border-left: 5px solid #007bff; 
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .method {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: white;
+            margin-right: 10px;
+        }
+        .get { background: #28a745; }
+        .post { background: #007bff; }
+        .put { background: #ffc107; color: #333; }
+        .delete { background: #dc3545; }
+        code { 
+            background: #f8f9fa; 
+            padding: 2px 6px; 
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            overflow-x: auto;
+        }
+        .url {
+            font-size: 18px;
+            margin: 10px 0;
+            background: #f0f0f0;
+            padding: 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .note {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>📱 游记分享 API 接口文档</h1>
+    
+    <div class="note">
+        <strong>📌 基础信息</strong><br>
+        - 基础URL: <code>http://你的IP:3000</code><br>
+        - 所有接口返回格式: JSON<br>
+        - 需要登录的接口请在请求体中包含 user_id<br>
+        - 图片上传大小限制: 最大5MB，支持jpg/png格式
+    </div>
+
+    <h2>📖 一、游记接口</h2>
+
+    <!-- 1. 获取游记列表 -->
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取游记列表（支持分页和筛选）</strong>
+        <div class="url">/api/notes</div>
+        
+        <p><strong>请求参数：</strong></p>
+        <table>
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必填</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>page</td>
+                <td>number</td>
+                <td>否</td>
+                <td>页码，默认1</td>
+            </tr>
+            <tr>
+                <td>limit</td>
+                <td>number</td>
+                <td>否</td>
+                <td>每页数量，默认10</td>
+            </tr>
+            <tr>
+                <td>scenic_id</td>
+                <td>number</td>
+                <td>否</td>
+                <td>按景点ID筛选</td>
+            </tr>
+        </table>
+
+        <p><strong>请求示例：</strong></p>
+        <pre>/api/notes?page=1&limit=10
+/api/notes?scenic_id=5
+/api/notes?page=2&limit=5&scenic_id=3</pre>
+
+        <p><strong>成功返回示例：</strong></p>
+        <pre>{
+  "notes": [
+    {
+      "id": 1,
+      "title": "九寨沟游记",
+      "content": "今天的九寨沟特别美...",
+      "cover_img": "http://localhost:3000/uploads/cover1.jpg",
+      "scenic_id": 5,
+      "user_id": 3,
+      "like_count": 25,
+      "create_time": "2026-03-09T10:30:00.000Z",
+      "username": "张三",
+      "scenic_name": "九寨沟"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 10,
+    "total": 50,
+    "pages": 5
+  }
+}</pre>
+    </div>
+
+    <!-- 2. 获取游记详情 -->
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取游记详情（含评论）</strong>
+        <div class="url">/api/notes/{id}</div>
+        
+        <p><strong>请求示例：</strong></p>
+        <pre>/api/notes/1</pre>
+
+        <p><strong>成功返回示例：</strong></p>
+        <pre>{
+  "id": 1,
+  "title": "九寨沟游记",
+  "content": "今天的九寨沟特别美...",
+  "cover_img": "http://localhost:3000/uploads/cover1.jpg",
+  "scenic_id": 5,
+  "user_id": 3,
+  "like_count": 25,
+  "create_time": "2026-03-09T10:30:00.000Z",
+  "update_time": "2026-03-09T10:30:00.000Z",
+  "username": "张三",
+  "scenic_name": "九寨沟",
+  "comments": [
+    {
+      "id": 1,
+      "content": "写得太好了！",
+      "create_time": "2026-03-09T11:00:00.000Z",
+      "username": "李四"
+    }
+  ]
+}</pre>
+
+        <p><strong>失败返回：</strong></p>
+        <pre>{
+  "error": "游记不存在"
+}</pre>
+    </div>
+
+    <!-- 3. 发布游记 -->
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <strong>发布游记</strong>
+        <div class="url">/api/notes</div>
+        <p><strong>请求格式：</strong> <code>multipart/form-data</code></p>
+        
+        <p><strong>请求参数：</strong></p>
+        <table>
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必填</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>title</td>
+                <td>string</td>
+                <td>是</td>
+                <td>游记标题，不超过100字</td>
+            </tr>
+            <tr>
+                <td>content</td>
+                <td>string</td>
+                <td>是</td>
+                <td>游记内容</td>
+            </tr>
+            <tr>
+                <td>scenic_id</td>
+                <td>number</td>
+                <td>否</td>
+                <td>关联的景点ID</td>
+            </tr>
+            <tr>
+                <td>user_id</td>
+                <td>number</td>
+                <td>是</td>
+                <td>发布者用户ID</td>
+            </tr>
+            <tr>
+                <td>cover_img</td>
+                <td>file</td>
+                <td>否</td>
+                <td>封面图片（jpg/png，≤5MB）</td>
+            </tr>
+        </table>
+
+        <p><strong>成功返回：</strong></p>
+        <pre>{
+  "success": true,
+  "message": "发布成功",
+  "noteId": 3
+}</pre>
+
+        <p><strong>失败返回：</strong></p>
+        <pre>{
+  "error": "标题、内容和用户ID不能为空"
+}</pre>
+    </div>
+
+    <!-- 4. 编辑游记 -->
+    <div class="endpoint">
+        <span class="method put">PUT</span>
+        <strong>编辑游记</strong>
+        <div class="url">/api/notes/{id}</div>
+        <p><strong>请求格式：</strong> <code>multipart/form-data</code></p>
+        
+        <p><strong>请求参数：</strong></p>
+        <table>
+            <tr>
+                <th>参数名</th>
+                <th>类型</th>
+                <th>必填</th>
+                <th>说明</th>
+            </tr>
+            <tr>
+                <td>title</td>
+                <td>string</td>
+                <td>是</td>
+                <td>游记标题</td>
+            </tr>
+            <tr>
+                <td>content</td>
+                <td>string</td>
+                <td>是</td>
+                <td>游记内容</td>
+            </tr>
+            <tr>
+                <td>scenic_id</td>
+                <td>number</td>
+                <td>否</td>
+                <td>关联的景点ID</td>
+            </tr>
+            <tr>
+                <td>user_id</td>
+                <td>number</td>
+                <td>是</td>
+                <td>用户ID（用于验证权限）</td>
+            </tr>
+            <tr>
+                <td>cover_img</td>
+                <td>file</td>
+                <td>否</td>
+                <td>新封面图片（不传则保留原图）</td>
+            </tr>
+        </table>
+
+        <p><strong>成功返回：</strong></p>
+        <pre>{
+  "success": true,
+  "message": "修改成功"
+}</pre>
+
+        <p><strong>失败返回：</strong></p>
+        <pre>{
+  "error": "只能编辑自己的游记"
+}</pre>
+    </div>
+
+    <!-- 5. 删除游记 -->
+    <div class="endpoint">
+        <span class="method delete">DELETE</span>
+        <strong>删除游记</strong>
+        <div class="url">/api/notes/{id}</div>
+        
+        <p><strong>请求体（JSON）：</strong></p>
+        <pre>{
+  "user_id": 3,
+  "is_admin": false   // 是否为管理员，可选，默认false
+}</pre>
+
+        <p><strong>成功返回：</strong></p>
+        <pre>{
+  "success": true,
+  "message": "删除成功"
+}</pre>
+    </div>
+
+    <!-- 6. 获取用户游记列表 -->
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取指定用户的游记列表</strong>
+        <div class="url">/api/users/{user_id}/notes</div>
+        
+        <p><strong>请求示例：</strong></p>
+        <pre>/api/users/3/notes</pre>
+
+        <p><strong>成功返回：</strong></p>
+        <pre>[
+  {
+    "id": 1,
+    "title": "九寨沟游记",
+    "cover_img": "http://localhost:3000/uploads/cover1.jpg",
+    "scenic_id": 5,
+    "like_count": 25,
+    "create_time": "2026-03-09T10:30:00.000Z",
+    "scenic_name": "九寨沟"
+  }
+]</pre>
+    </div>
+
+    <h2>💬 二、评论接口</h2>
+
+    <!-- 7. 发表评论 -->
+    <div class="endpoint">
+        <span class="method post">POST</span>
+        <strong>发表评论</strong>
+        <div class="url">/api/notes/{id}/comments</div>
+        
+        <p><strong>请求体（JSON）：</strong></p>
+        <pre>{
+  "user_id": 3,
+  "content": "写得太好了！我也想去"
+}</pre>
+
+        <p><strong>成功返回：</strong></p>
+        <pre>{
+  "success": true,
+  "message": "评论成功",
+  "comment": {
+    "id": 5,
+    "note_id": 1,
+    "user_id": 3,
+    "content": "写得太好了！我也想去",
+    "create_time": "2026-03-09T12:00:00.000Z",
+    "username": "张三"
+  }
+}</pre>
+
+        <p><strong>失败返回：</strong></p>
+        <pre>{
+  "error": "评论不能超过500字"
+}</pre>
+    </div>
+
+    <!-- 8. 获取评论列表 -->
+    <div class="endpoint">
+        <span class="method get">GET</span>
+        <strong>获取游记的评论列表</strong>
+        <div class="url">/api/notes/{id}/comments</div>
+        
+        <p><strong>请求示例：</strong></p>
+        <pre>/api/notes/1/comments</pre>
+
+        <p><strong>成功返回：</strong></p>
+        <pre>[
+  {
+    "id": 1,
+    "note_id": 1,
+    "user_id": 4,
+    "content": "写得太好了！",
+    "create_time": "2026-03-09T11:00:00.000Z",
+    "username": "李四"
+  }
+]</pre>
+    </div>
+
+    <!-- 9. 删除评论 -->
+    <div class="endpoint">
+        <span class="method delete">DELETE</span>
+        <strong>删除评论</strong>
+        <div class="url">/api/comments/{id}</div>
+        
+        <p><strong>请求体（JSON）：</strong></p>
+        <pre>{
+  "user_id": 4,
+  "is_admin": false
+}</pre>
+
+        <p><strong>成功返回：</strong></p>
+        <pre>{
+  "success": true,
+  "message": "删除成功"
+}</pre>
+    </div>
+
+        <h2>👑 三、管理员审核接口（需管理员登录）</h2>
+        <!-- 15. 管理员获取所有游记 -->
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <strong>管理员获取所有游记（带审核状态）</strong>
+            <div class="url">/api/admin/notes?status=pending&page=1&limit=20</div>
+            <p><strong>功能说明：</strong>管理员查看所有游记，可按状态筛选</p>
+            <p><strong>参数：</strong></p>
+            <table>
+                <tr>
+                    <th>参数名</th>
+                    <th>类型</th>
+                    <th>必填</th>
+                    <th>说明</th>
+                </tr>
+                <tr>
+                    <td>status</td>
+                    <td>string</td>
+                    <td>否</td>
+                    <td>pending(待审核)/approved(已通过)/rejected(已拒绝)</td>
+                </tr>
+                <tr>
+                    <td>page</td>
+                    <td>number</td>
+                    <td>否</td>
+                    <td>页码，默认1</td>
+                </tr>
+                <tr>
+                    <td>limit</td>
+                    <td>number</td>
+                    <td>否</td>
+                    <td>每页数量，默认20</td>
+                </tr>
+            </table>
+            <p><strong>请求示例：</strong></p>
+            <pre>/api/admin/notes?status=pending
+    /api/admin/notes?status=approved&page=2&limit=10</pre>
+        </div>
+
+        <!-- 16. 审核游记 -->
+        <div class="endpoint">
+            <span class="method put">PUT</span>
+            <strong>审核游记（通过/拒绝）</strong>
+            <div class="url">/api/admin/notes/:id/review</div>
+            <p><strong>请求体（JSON）：</strong></p>
+            <pre>{
+    "status": "approved",  // approved 或 rejected
+    "review_reason": "拒绝原因（拒绝时必填）"
+    }</pre>
+            <p><strong>成功返回：</strong></p>
+            <pre>{
+    "success": true,
+    "message": "游记已通过审核"
+    }</pre>
+            <p><strong>失败返回：</strong></p>
+            <pre>{
+    "error": "拒绝时必须填写原因"
+    }</pre>
+        </div>
+
+        <!-- 17. 批量审核游记 -->
+        <div class="endpoint">
+            <span class="method post">POST</span>
+            <strong>批量审核游记</strong>
+            <div class="url">/api/admin/notes/batch-review</div>
+            <p><strong>请求体（JSON）：</strong></p>
+            <pre>{
+    "note_ids": [1, 2, 3],
+    "status": "approved",  // approved 或 rejected
+    "review_reason": "批量审核备注（可选）"
+    }</pre>
+            <p><strong>成功返回：</strong></p>
+            <pre>{
+    "success": true,
+    "message": "成功处理 3 条游记",
+    "affectedRows": 3
+    }</pre>
+        </div>
+
+        <!-- 18. 获取待审核数量 -->
+        <div class="endpoint">
+            <span class="method get">GET</span>
+            <strong>获取待审核游记数量</strong>
+            <div class="url">/api/admin/notes/pending-count</div>
+            <p><strong>成功返回：</strong></p>
+            <pre>{
+    "count": 5
+    }</pre>
+        </div>
+
+
+    <h2>📝 四、状态码说明</h2>
+    <table>
+        <tr>
+            <th>状态码</th>
+            <th>说明</th>
+        </tr>
+        <tr>
+            <td>200</td>
+            <td>请求成功</td>
+        </tr>
+        <tr>
+            <td>400</td>
+            <td>请求参数错误</td>
+        </tr>
+        <tr>
+            <td>403</td>
+            <td>没有权限</td>
+        </tr>
+        <tr>
+            <td>404</td>
+            <td>资源不存在</td>
+        </tr>
+        <tr>
+            <td>500</td>
+            <td>服务器内部错误</td>
+        </tr>
+    </table>
+
+    <h2>🎯 五、前端调用示例</h2>
+
+    <h3>使用 fetch</h3>
+    <pre>// 获取游记列表
+async function getNotes(page = 1) {
+  const res = await fetch(`/api/notes?page=${page}`);
+  return await res.json();
+}
+
+// 发布游记
+async function publishNote(formData) {
+  const res = await fetch('/api/notes', {
+    method: 'POST',
+    body: formData
+  });
+  return await res.json();
+}
+
+// 发表评论
+async function postComment(noteId, userId, content) {
+  const res = await fetch(`/api/notes/${noteId}/comments`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ user_id: userId, content })
+  });
+  return await res.json();
+}</pre>
+
+    <h3>使用 axios</h3>
+    <pre>// 获取游记详情
+axios.get('/api/notes/1')
+  .then(res => console.log(res.data))
+  .catch(err => console.error(err));
+
+// 删除游记
+axios.delete('/api/notes/1', {
+  data: { user_id: 3 }
+}).then(res => console.log(res.data));</pre>
+
+    <div style="text-align: center; margin-top: 40px; color: #666; border-top: 1px solid #ddd; padding-top: 20px;">
+        <p>最后更新：2026年3月9日 | 版本：v1.0 (游记+评论)</p>
+    </div>
+</body>
+</html>

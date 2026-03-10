@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>途游旅游 - 城市漫游</title>
+  <link rel="stylesheet" href="网页.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="网页.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #66afea 0%, #6b4ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      height: 100vh;
+      background-position: center;
+      background-size: cover;
+      padding-left: 8%;
+      padding-right: 8%;
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: flex;
+      height: 88%;
+      align-items: center;
+    }
+
+    .col {
+      flex-basis: 50%;
+    }
+
+    .col:last-child {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 20px;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    h1 {
+      color: #fff;
+      font-size: 60px;
+    }
+
+    p {
+      color: #fff;
+      font-size: 20px;
+      line-height: 25px;
+    }
+
+    button {
+      width: 180px;
+      color: #000;
+      font-size: 12px;
+      padding: 12px 0;
+      background: #fff;
+      border: 0;
+      border-radius: 20px;
+      outline: none;
+      margin-top: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #f0f0f0;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      width: 250px;
+      height: 200px;
+      display: inline-block;
+      border-radius: 10px;
+      padding: 0;
+      box-sizing: border-box;
+      cursor: pointer;
+      margin: 10px 15px;
+      background-position: center;
+      background-size: cover;
+      transition: transform 0.5s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .card h5,
+    .card p {
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      padding: 15px 25px;
+    }
+
+    .card2 {
+      background-image: url(./旅游图片/城市漫游/重庆/城市重庆2.jpg);
+    }
+
+    .card3 {
+      background-image: url(./旅游图片/城市漫游/重庆/城市重庆3.jpg);
+    }
+
+    .card4 {
+      background-image: url(./旅游图片/城市漫游/重庆/城市重庆4.jpg);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+    }
+
+    h5 {
+      color: #fff;
+      text-shadow: 0 0 5px #999;
+      position: absolute;
+      top: -40px;
+      text-align: center;
+
+      font-size: 30px;
+    }
+
+    .card p {
+      text-shadow: 0 0 5px #000;
+      font-size: 18px;
+      position: absolute;
+      bottom: -10px;
+      text-align: center;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="slide1"></div>
+      <div class="slide2"></div>
+      <ul id="nav">
+        <li><a href="./网页.html">首页</a></li>
+        <li><a href="./古城古镇网页.html">古城古镇</a></li>
+        <li><a href="./自然风光网页.html">自然风光</a></li>
+        <li data-current="true"><a href="./城市漫游网页.html">城市漫游</a></li>
+        <li><a href="./小众秘境.html">小众秘境</a></li>
+        <li><a href="./游记分享.html">游记分享</a></li>
+        <li><a href="./我的.html">我的</a></li>
+      </ul>
+    </div>
+  </header>
+
+
+  <div class="container fade-in"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./旅游图片/城市漫游/重庆/重庆.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="重庆">重庆</h1>
+        <p>
+          重庆，一座山城，一座雾都，一座充满魔幻色彩的城市。这里有错落有致的吊脚楼，有穿楼而过的轻轨，有麻辣鲜香的火锅，更有热情好客的重庆人。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/5ec8fbc90000000001005003?xsec_token=ABmKtDMI9FhIiSKuRHHrOvZJxF_jfbRVhelCTZEnw7MzU=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/城市漫游/重庆/重庆李子坝.jpg" alt="">
+          <button class="favorite-btn" data-id="chongqing-liziba" data-name="李子坝" data-image="./旅游图片/城市漫游/重庆/重庆李子坝.jpg"
+            data-description="轻轨穿楼奇观，打卡现实版'二次元'魔幻场景">☆</button>
+          <h5>李子坝</h5>
+          <p>轻轨穿楼奇观，打卡现实版“二次元”魔幻场景</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/城市漫游/重庆/重庆洪崖洞.jpg" alt="">
+          <button class="favorite-btn" data-id="chongqing-hongyadong" data-name="洪崖洞"
+            data-image="./旅游图片/城市漫游/重庆/重庆洪崖洞.jpg" data-description="千与千寻般的吊脚楼群，灯火倒映江面，现实版'天空之城'">☆</button>
+          <h5>洪崖洞</h5>
+          <p>千与千寻般的吊脚楼群，灯火倒映江面，现实版“天空之城”</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/城市漫游/重庆/重庆观音桥.jpg" alt="">
+          <button class="favorite-btn" data-id="chongqing-guanyinqiao" data-name="观音桥"
+            data-image="./旅游图片/城市漫游/重庆/重庆观音桥.jpg" data-description="潮流商圈，购物美食天堂，感受重庆夜生活的繁华与活力">☆</button>
+          <h5>观音桥</h5>
+          <p>潮流商圈，购物美食天堂，感受重庆夜生活的繁华与活力</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/城市漫游/重庆/重庆解放碑.jpg" alt="">
+          <button class="favorite-btn" data-id="chongqing-jiefangbei" data-name="解放碑"
+            data-image="./旅游图片/城市漫游/重庆/重庆解放碑.jpg" data-description="重庆的地标建筑，繁华的商业中心，感受现代都市气息">☆</button>
+          <h5>解放碑</h5>
+          <p>重庆的地标建筑，繁华的商业中心，感受现代都市气息</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container fade-in"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./旅游图片/城市漫游/上海/上海东方明珠1.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="上海">上海</h1>
+        <p>
+          上海，东方明珠闪耀的摩登之城。外滩万国建筑群与陆家嘴摩天大楼隔江相望，黄浦江水缓缓流淌，诉说着百年风云。弄堂深处藏着老上海的味道，石库门里飘着咖啡香，这里是中西文化交融的魔幻都市。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/68d3b80b00000000130185fc?xsec_token=ABxxycL1BhJ0FJZJsj3i34d2gtxnyXu6KKPdDE4_t3SHE=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/城市漫游/上海/上海东方明珠.jpg" alt="">
+          <button class="favorite-btn" data-id="shanghai-dongfangmingzhu" data-name="东方明珠"
+            data-image="./旅游图片/城市漫游/上海/上海东方明珠.jpg" data-description="上海的标志性建筑">☆</button>
+          <h5>东方明珠</h5>
+          <p>上海的标志性建筑</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/城市漫游/上海/上海武康路.jpg" alt="">
+          <button class="favorite-btn" data-id="shanghai-wukanglu" data-name="武康路" data-image="./旅游图片/城市漫游/上海/上海武康路.jpg"
+            data-description="百年梧桐掩映下的老洋房街区">☆</button>
+          <h5>武康路</h5>
+          <p>百年梧桐掩映下的老洋房街区</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/城市漫游/上海/上海豫园.jpg" alt="">
+          <button class="favorite-btn" data-id="shanghai-yuyuan" data-name="豫园" data-image="./旅游图片/城市漫游/上海/上海豫园.jpg"
+            data-description="体验老上海慢生活">☆</button>
+          <h5>豫园</h5>
+          <p>体验老上海慢生活</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/城市漫游/上海/上海静安寺.jpg" alt="">
+          <button class="favorite-btn" data-id="shanghai-jingansi" data-name="静安寺" data-image="./旅游图片/城市漫游/上海/上海静安寺.jpg"
+            data-description="闹市中的千年古刹">☆</button>
+          <h5>静安寺</h5>
+          <p>闹市中的千年古刹</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container fade-in"
+    style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(./旅游图片/城市漫游/四川成都/成都.jpg);">
+    <div class="row">
+      <div class="col">
+        <h1 id="成都">成都</h1>
+        <p>
+          成都，一座来了就不想走的城市。宽窄巷子的红砖黛瓦，茶馆里的盖碗茶香，勾勒出这座“天府之国”的悠闲与惬意。熊猫在竹林里打滚，川剧在台前变脸，成都用慢节奏把日子过成了诗。
+        </p>
+        <a href="https://www.xiaohongshu.com/explore/698db2bc0000000015022842?xsec_token=ABR4EbGiXEBcWZm49THkKRc3jzj_x16BRf6DtUyBOnLU8=&xsec_source=pc_search&source=web_search_result_notes"
+          target="_blank">
+          <button type="button" style="font-size: 18px;">查看攻略</button>
+        </a>
+      </div>
+      <div class="col">
+        <div class="card1 card">
+          <img src="./旅游图片/城市漫游/四川成都/成都武侯祠.jpg" alt="">
+          <button class="favorite-btn" data-id="chengdu-wuhouci" data-name="武侯祠" data-image="./旅游图片/城市漫游/四川成都/成都武侯祠.jpg"
+            data-description="红墙竹影里与诸葛亮隔空对话">☆</button>
+          <h5>武侯祠</h5>
+          <p>红墙竹影里与诸葛亮隔空对话</p>
+        </div>
+        <div class="card2 card">
+          <img src="./旅游图片/城市漫游/四川成都/成都宽窄巷子.jpg" alt="">
+          <button class="favorite-btn" data-id="chengdu-kuanzhai" data-name="宽窄巷子"
+            data-image="./旅游图片/城市漫游/四川成都/成都宽窄巷子.jpg" data-description="红砖黛瓦间，生活节奏缓缓流淌">☆</button>
+          <h5>宽窄巷子</h5>
+          <p>红砖黛瓦间，生活节奏缓缓流淌</p>
+        </div>
+        <div class="card3 card">
+          <img src="./旅游图片/城市漫游/四川成都/成都春熙路.jpg" alt="">
+          <button class="favorite-btn" data-id="chengdu-chunxilu" data-name="春熙路"
+            data-image="./旅游图片/城市漫游/四川成都/成都春熙路.jpg" data-description="成都最繁华的商业脉搏在此跳动">☆</button>
+          <h5>春熙路</h5>
+          <p>成都最繁华的商业脉搏在此跳动</p>
+        </div>
+        <div class="card4 card">
+          <img src="./旅游图片/城市漫游/四川成都/成都杜甫草堂.jpg" alt="">
+          <button class="favorite-btn" data-id="chengdu-dufucao" data-name="杜甫草堂"
+            data-image="./旅游图片/城市漫游/四川成都/成都杜甫草堂.jpg" data-description="诗圣故居，千年文脉静静流淌">☆</button>
+          <h5>杜甫草堂</h5>
+          <p>诗圣故居，千年文脉静静流淌</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 初始化页面
+    async function initPage() {
+      console.log('开始初始化页面');
+
+      // 等待后端可用性检测完成
+      console.log('等待后端可用性检测完成...');
+      await new Promise(resolve => {
+        const checkBackendStatus = () => {
+          if (typeof window.BACKEND_AVAILABLE !== 'undefined') {
+            console.log('后端可用性检测完成:', window.BACKEND_AVAILABLE);
+            resolve();
+          } else {
+            console.log('后端可用性检测未完成，继续等待...');
+            setTimeout(checkBackendStatus, 100);
+          }
+        };
+        checkBackendStatus();
+      });
+
+      // 再次检查后端可用性，确保检测完成
+      if (typeof window.BACKEND_AVAILABLE === 'undefined') {
+        console.log('后端可用性检测仍未完成，强制等待2秒...');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+
+      try {
+        // 使用网页.js中的getPlaces函数获取地方数据
+        const places = await getPlaces();
+        console.log('获取到的地方数据:', places);
+
+        // 过滤出城市漫游分类的地方
+        const cityPlaces = places.filter(place => place.category && place.category.includes('城市漫游'));
+        console.log('城市漫游地方:', cityPlaces);
+
+        // 使用getItems接口获取所有城市漫游类型的景点
+        const allCitySpots = await getItems('attraction');
+        console.log('获取到的城市漫游景点:', allCitySpots);
+        console.log('景点数量:', allCitySpots.length);
+
+        // 渲染所有容器的景点
+        const containers = document.querySelectorAll('.container');
+        console.log('找到的容器数量:', containers.length);
+        
+        for (let containerIndex = 0; containerIndex < containers.length; containerIndex++) {
+          const container = containers[containerIndex];
+          // 从h1标题获取城市名称
+          const h1 = container.querySelector('h1');
+          const cityName = h1 ? h1.textContent.trim() : '';
+          console.log('容器', containerIndex + 1, '标题:', cityName);
+
+          // 找到卡片容器
+          const cardContainer = container.querySelector('.col:last-child');
+          if (!cardContainer) {
+            console.error('没有找到卡片容器');
+            continue;
+          }
+          console.log('找到卡片容器:', cardContainer);
+
+          // 获取当前城市的景点（使用place_name匹配）
+          const citySpecificSpots = allCitySpots.filter(spot => {
+            // 使用place_name或name字段匹配
+            const spotPlaceName = spot.place_name || spot.name || '';
+            return spotPlaceName.includes(cityName) || cityName.includes(spotPlaceName);
+          });
+          
+          console.log(cityName, '的景点数量:', citySpecificSpots.length);
+          console.log(cityName, '的景点:', citySpecificSpots);
+
+          // 如果有后端数据，更新卡片
+          if (citySpecificSpots.length > 0) {
+            console.log(cityName, '有后端景点数据，更新卡片');
+
+            // 获取现有的卡片
+            const existingCards = cardContainer.querySelectorAll('.card');
+            console.log('现有卡片数量:', existingCards.length);
+
+            // 更新现有卡片
+            citySpecificSpots.forEach((spot, spotIndex) => {
+              if (existingCards[spotIndex]) {
+                console.log('更新第', spotIndex + 1, '个卡片:', spot.name);
+                const card = existingCards[spotIndex];
+
+                // 获取图片URL
+                let imageUrl = spot.image_url || '';
+                console.log('原始图片URL:', imageUrl);
+                
+                // 处理图片URL
+                if (imageUrl) {
+                  if (imageUrl.startsWith('http://localhost:3000')) {
+                    imageUrl = imageUrl.replace('http://localhost:3000', 'http://10.13.99.225:3000');
+                  }
+                  console.log('处理后的图片URL:', imageUrl);
+                  // 更新图片
+                  const img = card.querySelector('img');
+                  if (img) img.src = imageUrl;
+                } else {
+                  console.log('没有图片URL，保持原有图片');
+                }
+                
+                // 更新标题和描述
+                const titleEl = card.querySelector('h5');
+                const descEl = card.querySelector('p');
+                if (titleEl) titleEl.textContent = spot.name;
+                if (descEl) descEl.textContent = spot.description || spot.subtitle || '';
+                
+                // 更新收藏按钮的data属性
+                const favoriteBtn = card.querySelector('.favorite-btn');
+                if (favoriteBtn) {
+                  favoriteBtn.setAttribute('data-id', spot.id);
+                  favoriteBtn.setAttribute('data-name', spot.name);
+                  favoriteBtn.setAttribute('data-image', spot.image_url || '');
+                  favoriteBtn.setAttribute('data-description', spot.description || spot.subtitle || '');
+                }
+              }
+            });
+          } else {
+            console.log(cityName, '没有后端景点数据，保持原有静态卡片');
+          }
+        }
+
+        console.log('渲染完成');
+      } catch (error) {
+        console.error('初始化页面失败:', error);
+        // 即使API请求失败，也保持原有静态卡片
+        console.log('API请求失败，保持原有静态卡片');
+      }
+    }
+
+    // 滚动触发的动画效果
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          // 一旦元素进入视口并显示，就停止观察它，这样它就会保持可见状态
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    fadeElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    // 滚动结束后停在完整页面
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // 检查是否滚动到了页面顶部（导航栏区域）
+        if (window.scrollY < 100) {
+          return; // 停在导航栏区域
+        }
+
+        // 检查是否滚动到了页面底部
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+          return; // 停在页面底部
+        }
+
+        const containers = document.querySelectorAll('.container');
+        let closestContainer = null;
+        let minDistance = Infinity;
+
+        containers.forEach(container => {
+          const rect = container.getBoundingClientRect();
+          const distance = Math.abs(rect.top);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestContainer = container;
+          }
+        });
+
+        // 只有当距离足够大时才进行滚动，避免小幅度的跳动
+        if (closestContainer && minDistance > 50) {
+          closestContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500); // 增加定时器时间，减少滚动触发的频率
+    });
+
+    // 页面加载时初始化
+    console.log('页面脚本加载完成');
+    window.addEventListener('DOMContentLoaded', async function () {
+      console.log('DOMContentLoaded事件触发');
+      await initPage();
+      initFavoriteButtons();
+    });
+  </script>
+
+  <!-- 底部界面 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>关于我们</h3>
+        <p>途游旅游是一个专注于提供优质旅游信息和服务的平台，致力于为旅行者提供真实、全面的旅游攻略和目的地信息。我们希望通过我们的努力，让每一次旅行都成为难忘的回忆。</p>
+      </div>
+      <div class="footer-section">
+        <h3>图片来源</h3>
+        <p>本网站所有图片均来源于互联网，版权归原作者所有。如有侵权，请联系我们删除。</p>
+      </div>
+      <div class="footer-section">
+        <h3>给我们留言</h3>
+        <form class="contact-form" action="mailto:1502055165@qq.com" method="post" enctype="text/plain">
+          <input type="text" placeholder="您的姓名" name="name" required>
+          <input type="email" placeholder="您的邮箱" name="email" required>
+          <textarea placeholder="您的留言" rows="3" name="message" required></textarea>
+          <button type="submit">提交留言</button>
+        </form>
+        <p style="margin-top: 10px; font-size: 14px; color: #999;">我们的联系邮箱：1502055165@qq.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 途游旅游 版权所有</p>
+    </div>
+  </footer>
+</body>
+
+</html>

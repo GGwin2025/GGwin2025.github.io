@@ -1,0 +1,97 @@
+服务器地址：http://10.13.99.225:3000
+👤 五、用户接口（新增）
+5.1 用户注册
+POST http://10.13.99.225:3000/api/user/register
+Content-Type: application/json
+请求参数：
+json
+{
+  "username": "zhangsan",     // 必填，用户名
+  "password": "123456",        // 必填，密码
+  "nickname": "张三"           // 可选，昵称（不填默认为用户名）
+}
+成功返回：
+json
+{
+  "success": true,
+  "message": "注册成功",
+  "user": {
+    "id": 1,
+    "username": "zhangsan",
+    "nickname": "张三",
+    "avatar": null,
+    "created_at": "2026-03-10T..."
+  }
+}
+
+5.2 用户登录
+POST http://10.13.99.225:3000/api/user/login
+Content-Type: application/json
+请求参数：
+json
+{
+  "username": "zhangsan",
+  "password": "123456"
+}
+成功返回：
+json
+{
+  "success": true,
+  "message": "登录成功",
+  "user": {
+    "id": 1,
+    "username": "zhangsan",
+    "nickname": "张三",
+    "avatar": null,
+    "created_at": "2026-03-10T..."
+  }
+}
+
+5.3 获取用户信息
+GET http://10.13.99.225:3000/api/users/1
+成功返回：
+json
+{
+  "id": 1,
+  "username": "zhangsan",
+  "nickname": "张三",
+  "avatar": null,
+  "created_at": "2026-03-10T..."
+}
+
+5.4 更新用户信息
+PUT http://10.13.99.225:3000/api/users/1
+Content-Type: application/json
+请求参数：
+json
+{
+  "nickname": "张三三",    // 可选，修改昵称
+  "avatar": "base64图片数据" // 可选，修改头像
+}
+成功返回：
+json
+{
+  "success": true,
+  "message": "更新成功",
+  "user": {
+    "id": 1,
+    "username": "zhangsan",
+    "nickname": "张三三",
+    "avatar": "base64图片数据",
+    "created_at": "2026-03-10T..."
+  }
+}
+
+5.5 上传头像（文件方式）
+POST http://10.13.99.225:3000/api/users/1/avatar
+Content-Type: multipart/form-data
+参数：
+avatar: 图片文件（jpg/png/gif，最大5MB）
+
+成功返回：
+json
+{
+  "success": true,
+  "message": "头像上传成功",
+  "avatar": "http://10.13.99.225:3000/uploads/xxx.jpg"
+}

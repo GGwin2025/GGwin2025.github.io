@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>途游旅游</title>
+  <link rel="stylesheet" href="网页.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #66afea 0%, #6b4ba2 100%);
+      min-height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="slide1"></div>
+      <div class="slide2"></div>
+      <ul id="nav">
+        <li data-current="true"><a href="./网页.html">首页</a></li>
+        <li><a href="./古城古镇网页.html">古城古镇</a></li>
+        <li><a href="./自然风光网页.html">自然风光</a></li>
+        <li><a href="./城市漫游网页.html">城市漫游</a></li>
+        <li><a href="./小众秘境.html">小众秘境</a></li>
+        <li><a href="./游记分享.html">游记分享</a></li>
+        <li><a href="./我的.html">我的</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!--首页轮播图-->
+  <div class="carousel-container">
+    <!--第一张轮播图-->
+    <div class="slide active">
+      <img src="./旅游图片/首页轮播图/轮播图1青春旅游.jpg" alt="青春旅游">
+      <div class="slide-text">
+        <h1>"用一场旅游，告别青春"</h1>
+        <p>和TA一起，去看山川湖海</p>
+      </div>
+      <a href="https://www.xiaohongshu.com/explore/68456aa1000000002101a057?xsec_token=ABdLUI4VBfE_1EBBZGfxy3oONq7u3iT444C6lD5SZsrPg=&xsec_source=pc_search&source=web_note_detail_r10"
+        class="slide-btn" target="_blank">了解更多</a>
+    </div>
+    <!--第二张轮播图-->
+    <div class="slide">
+      <img src="./旅游图片/首页轮播图/轮播图2逃离城市.jpg" alt="城市漫游">
+      <div class="slide-text">
+        <h1>"48小时城市逃离计划"</h1>
+        <p>小众目的地推荐</p>
+      </div>
+      <a href="https://www.xiaohongshu.com/explore/694cfcd2000000001e003e4b?xsec_token=ABVW6GGdOjwthuZq3lopY7DJYJpDdWpSPuX4Y_4_z_K8c=&xsec_source=pc_search&source=web_search_result_notes"
+        class="slide-btn" target="_blank">了解更多</a>
+    </div>
+    <!--第三张轮播图-->
+    <div class="slide">
+      <img src="./旅游图片/首页轮播图/轮播图3穷游.jpg" alt="城市漫游">
+      <div class="slide-text">
+        <h1>"预算500块，去哪玩？"</h1>
+        <p>学生党专属省钱攻略</p>
+      </div>
+      <a href="https://www.xiaohongshu.com/explore/668529570000000005004746?xsec_token=ABt4UzSNDmrAKT9nCXdQdP_6UesGrhVUh-OZQyvtf3s90=&xsec_source=pc_search&source=web_search_result_notes"
+        class="slide-btn" target="_blank">了解更多</a>
+    </div>
+    <!--轮播图按钮-->
+    <!--左按钮-->
+    <button class="carousel-btn prev" aria-label="上一张">《</button>
+    <!--右按钮-->
+    <button class="carousel-btn next" aria-label="下一张">》</button>
+    <!--小圆点-->
+    <div class="indicators">
+      <span class="indicator active" data-index="0"></span>
+      <span class="indicator" data-index="1"></span>
+      <span class="indicator" data-index="2"></span>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card" style="--clr:#c0a530;">
+      <div class="imgBx">
+        <img src="./旅游图片/古城古镇/湖南凤凰古城/古城湖南1.jpg">
+      </div>
+      <div class="content">
+        <h2>古城古镇</h2>
+        <p>古城古镇是中国历史上重要的文化遗产，也是中国传统的旅游目的地。</p>
+        <a href="./古城古镇网页.html">了解更多</a>
+      </div>
+    </div>
+    <div class="card" style="--clr:#61c42f;">
+      <div class="imgBx">
+        <img src="./旅游图片/自然风光/四川九寨沟/自然四川1.jpg">
+      </div>
+      <div class="content">
+        <h2>自然风光</h2>
+        <p>自然风光是指自然环境中存在的各种自然特征，如山川、湖海、森林等。</p>
+        <a href="./自然风光网页.html">了解更多</a>
+      </div>
+    </div>
+    <div class="card" style="--clr:#d14c4c;">
+      <div class="imgBx">
+        <img src="./旅游图片/城市漫游/重庆/城市重庆1.jpg">
+      </div>
+      <div class="content">
+        <h2>城市漫游</h2>
+        <p>城市漫游是指在城市中漫步，探索城市的不同角落和景点。</p>
+        <a href="./城市漫游网页.html">了解更多</a>
+      </div>
+    </div>
+    <div class="card" style="--clr:#4ca3b9;">
+      <div class="imgBx">
+        <img src="./旅游图片/文艺小众/甘孜/甘孜1.jpg">
+      </div>
+      <div class="content">
+        <h2>小众秘境</h2>
+        <p>小众秘境是指在城市中隐藏的、只有少数人知道的区域，如隐藏的宝藏、神秘的洞穴等。</p>
+        <a href="./小众秘境.html">了解更多</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="destinations" class="deco">
+    <h1 class="guide">—————— 热门推荐 ——————</h1>
+    <ul class="pics">
+      <li class="first">
+        <a href="./城市漫游网页.html#上海" target="_self">
+          <img src="./旅游图片/城市漫游/上海/上海东方明珠.jpg" alt="热门推荐1">
+          <span>上海东方明珠</span>
+        </a>
+      </li>
+      <li>
+        <a href="./小众秘境.html#黄石大峡谷" target="_self">
+          <img src="./旅游图片/小众秘境/湖北黄石地心大峡谷/湖北黄石地心大峡谷.jpg" alt="热门推荐2">
+          <span>黄石大峡谷</span>
+        </a>
+      </li>
+      <li>
+        <a href="./自然风光网页.html#广西阳朔" target="_self">
+          <img src="./旅游图片/自然风光/广西阳朔/广西阳朔1.jpg" alt="热门推荐3">
+          <span>广西阳朔</span>
+        </a>
+      </li>
+      <li>
+        <a href="./自然风光网页.html#江西武功山" target="_self">
+          <img src="./旅游图片/自然风光/江西武功山/江西武功山1.jpg" alt="热门推荐4">
+          <span>江西武功山</span>
+        </a>
+      </li>
+      <li>
+        <a href="./古城古镇网页.html#凤凰古城" target="_self">
+          <img src="./旅游图片/古城古镇/湖南凤凰古城/古城湖南3.jpg" alt="热门推荐5">
+          <span>湖南凤凰古城</span>
+        </a>
+      </li>
+      <li>
+        <a href="./小众秘境.html#广西凤山" target="_self">
+          <img src="./旅游图片/小众秘境/广西凤山/广西凤山.jpg" alt="">
+          <span>广西凤山</span>
+        </a>
+      </li>
+    </ul>
+    <div class="clear"></div>
+  </div>
+
+  <script src="网页.js"></script>
+
+  <!-- 底部界面 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>关于我们</h3>
+        <p>途游旅游是一个专注于提供优质旅游信息和服务的平台，致力于为旅行者提供真实、全面的旅游攻略和目的地信息。我们希望通过我们的努力，让每一次旅行都成为难忘的回忆。</p>
+      </div>
+      <div class="footer-section">
+        <h3>图片来源</h3>
+        <p>本网站所有图片均来源于互联网，版权归原作者所有。如有侵权，请联系我们删除。</p>
+      </div>
+      <div class="footer-section">
+        <h3>给我们留言</h3>
+        <form class="contact-form" action="mailto:1502055165@qq.com" method="post" enctype="text/plain">
+          <input type="text" placeholder="您的姓名" name="name" required>
+          <input type="email" placeholder="您的邮箱" name="email" required>
+          <textarea placeholder="您的留言" rows="3" name="message" required></textarea>
+          <button type="submit">提交留言</button>
+        </form>
+        <p style="margin-top: 10px; font-size: 14px; color: #999;">我们的联系邮箱：1502055165@qq.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 途游旅游 版权所有</p>
+    </div>
+  </footer>
+</body>
+
+</html>
